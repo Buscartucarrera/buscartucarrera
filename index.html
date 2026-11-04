@@ -1,0 +1,1900 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Buscar tu carrera</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--c1B5A44:#1B5A44;--c1D3A4B:#1D3A4B;--c1D4C66:#1D4C66;--c1D5873:#1D5873;--c1F5E48:#1F5E48;--c1F9FB0:#1F9FB0;--c2B6F8E:#2B6F8E;--c2E7D62:#2E7D62;--c3D5F52:#3D5F52;--c47657A:#47657A;--c6B4A12:#6B4A12;--c7FB7D4:#7FB7D4;--c8A5FB5:#8A5FB5;--cA5D6BA:#A5D6BA;--cA9CCE0:#A9CCE0;--cB5476B:#B5476B;--cC3DBE8:#C3DBE8;--cC4763A:#C4763A;--cC6E6D3:#C6E6D3;--cCFE8D8:#CFE8D8;--cCFEBDB:#CFEBDB;--cD3E5EE:#D3E5EE;--cD3E8F4:#D3E8F4;--cDDF0EF:#DDF0EF;--cE3F1F8:#E3F1F8;--cE3F3EA:#E3F3EA;--cF3F9FC:#F3F9FC;--cF8E7B9:#F8E7B9;--cFBF1DF:#FBF1DF;--cFFFFFF:#FFFFFF;--onAccent:#FFFFFF;--accBg:#2B6F8E;--greenBg:#2E7D62;--cF4F9FB:#F4F9FB;}
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--c2B6F8E);outline-offset:2px}
+a{color:var(--c2B6F8E)}a:hover{color:var(--c1D5873)}
+</style>
+</helmet>
+<div style="{{rootStyle}}">
+
+<header style="background:var(--cFFFFFF);border-bottom:1px solid var(--cD3E5EE)">
+<div style="max-width:1120px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<button type="button" onClick="{{goHome}}" aria-label="Ir al inicio" style="display:flex;align-items:center;gap:10px;border:0;background:transparent;padding:4px 0;min-height:44px;color:var(--c1D3A4B);font:800 20px/1 Nunito,system-ui,sans-serif">
+<svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="11" style="fill:var(--cCFE8D8);"></rect><path d="M18 27 V17" fill="none" stroke-width="2.4" stroke-linecap="round" style="stroke:var(--c2E7D62);"></path><path d="M18 19 C18 13 13 11.5 9.5 12.5 C9.5 17.5 13 20 18 19 Z" fill="none" stroke-width="2.4" stroke-linejoin="round" style="stroke:var(--c2E7D62);"></path><path d="M18 16.5 C18 11.5 22 9 26.5 10 C26.5 14.5 23 17.5 18 16.5 Z" fill="none" stroke-width="2.4" stroke-linejoin="round" style="stroke:var(--c2E7D62);"></path></svg>
+<span>Buscar tu carrera</span>
+</button>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+<nav aria-label="Principal" style="display:flex;flex-wrap:wrap;gap:4px">
+<sc-for list="{{navItems}}" as="item" hint-placeholder-count="6">
+<button type="button" onClick="{{item.go}}" style="{{item.style}}">{{item.label}}</button>
+</sc-for>
+</nav>
+<button type="button" aria-pressed="{{darkPressed}}" onClick="{{toggleDark}}" style="min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 15px/1 Nunito,system-ui,sans-serif">{{darkLabel}}</button>
+</div>
+</div>
+</header>
+
+<main style="flex:1">
+
+<sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+<div>
+<section style="max-width:1120px;margin:0 auto;padding:56px 24px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:48px">
+<div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<span style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;background:var(--cE3F3EA);color:var(--c1F5E48);font:700 14px/1 Nunito,system-ui,sans-serif;padding:9px 14px;border-radius:999px"><svg width="30" height="20" viewBox="0 0 30 20" role="img" aria-label="Bandera de la Comunidad de Madrid" style="border-radius:2px;box-shadow:0 0 0 1px #D3E5EE"><rect width="30" height="20" fill="#C8102E"></rect><polygon fill="#FFFFFF" points="6.50,4.90 6.97,6.35 8.50,6.35 7.26,7.25 7.73,8.70 6.50,7.80 5.27,8.70 5.74,7.25 4.50,6.35 6.03,6.35"></polygon><polygon fill="#FFFFFF" points="12.00,4.90 12.47,6.35 14.00,6.35 12.76,7.25 13.23,8.70 12.00,7.80 10.77,8.70 11.24,7.25 10.00,6.35 11.53,6.35"></polygon><polygon fill="#FFFFFF" points="17.50,4.90 17.97,6.35 19.50,6.35 18.26,7.25 18.73,8.70 17.50,7.80 16.27,8.70 16.74,7.25 15.50,6.35 17.03,6.35"></polygon><polygon fill="#FFFFFF" points="23.00,4.90 23.47,6.35 25.00,6.35 23.76,7.25 24.23,8.70 23.00,7.80 21.77,8.70 22.24,7.25 21.00,6.35 22.53,6.35"></polygon><polygon fill="#FFFFFF" points="9.25,10.90 9.72,12.35 11.25,12.35 10.01,13.25 10.48,14.70 9.25,13.80 8.02,14.70 8.49,13.25 7.25,12.35 8.78,12.35"></polygon><polygon fill="#FFFFFF" points="14.75,10.90 15.22,12.35 16.75,12.35 15.51,13.25 15.98,14.70 14.75,13.80 13.52,14.70 13.99,13.25 12.75,12.35 14.28,12.35"></polygon><polygon fill="#FFFFFF" points="20.25,10.90 20.72,12.35 22.25,12.35 21.01,13.25 21.48,14.70 20.25,13.80 19.02,14.70 19.49,13.25 18.25,12.35 19.78,12.35"></polygon></svg>Orientación universitaria · Comunidad de Madrid</span>
+<h1 style="margin:0;font:800 44px/1.15 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿No tienes claro qué carrera quieres hacer en el futuro?</h1>
+<p style="margin:0;font:600 20px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">¡No te preocupes! Contesta unas simples preguntas para encontrar las carreras universitarias que más se ajustan a ti.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:4px">
+<button type="button" onClick="{{startQuiz}}" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;border:0;background:var(--accBg);color:var(--onAccent);font:700 18px/1 Nunito,system-ui,sans-serif">Empieza el cuestionario</button>
+<button type="button" onClick="{{goGrados}}" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 18px/1 Nunito,system-ui,sans-serif">Explorar Grados Universitarios</button>
+</div>
+<p style="margin:0;font:600 15px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">15 preguntas · unos 5 minutos · sin registro</p>
+</div>
+<div style="flex:1 1 340px;min-width:0">
+<svg viewBox="0 0 480 380" aria-hidden="true" style="width:100%;height:auto;display:block">
+<defs><clipPath id="heroClip"><rect width="480" height="380" rx="36"></rect></clipPath></defs>
+<g clip-path="url(#heroClip)">
+<rect width="480" height="380" style="fill:var(--cE3F1F8);"></rect>
+<circle cx="372" cy="92" r="42" style="fill:var(--cF8E7B9);"></circle>
+<ellipse cx="116" cy="82" rx="48" ry="16" opacity="0.9" style="fill:var(--cFFFFFF);"></ellipse>
+<ellipse cx="146" cy="68" rx="30" ry="14" opacity="0.9" style="fill:var(--cFFFFFF);"></ellipse>
+<ellipse cx="330" cy="176" rx="40" ry="12" opacity="0.8" style="fill:var(--cFFFFFF);"></ellipse>
+<path d="M0 250 C90 190 170 200 250 240 C330 280 410 230 480 200 L480 380 L0 380 Z" style="fill:var(--cC6E6D3);"></path>
+<path d="M0 305 C100 255 200 272 280 302 C360 332 430 296 480 276 L480 380 L0 380 Z" style="fill:var(--cA5D6BA);"></path>
+<path d="M236 386 C190 346 330 336 272 296 C232 268 304 256 262 226" fill="none" stroke-width="16" stroke-linecap="round" style="stroke:var(--cFFFFFF);"></path>
+<rect x="259" y="146" width="6" height="82" rx="3" style="fill:var(--c47657A);"></rect>
+<path d="M265 154 h58 l12 11 l-12 11 h-58 z" style="fill:var(--c2B6F8E);"></path>
+<path d="M259 184 h-52 l-12 11 l12 11 h52 z" style="fill:var(--c2E7D62);"></path>
+<path d="M265 214 h40 l10 9 l-10 9 h-40 z" style="fill:var(--c7FB7D4);"></path>
+</g>
+</svg>
+</div>
+</section>
+
+<section style="max-width:1120px;margin:0 auto;padding:32px 24px 16px;display:flex;flex-direction:column;gap:20px">
+<h2 style="margin:0;font:800 28px/1.2 Nunito,system-ui,sans-serif">Todo lo que necesitas, en un solo sitio</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<sc-for list="{{homeCards}}" as="card" hint-placeholder-count="4">
+<button type="button" onClick="{{card.go}}" style="{{card.style}}">
+<span style="font:800 22px/1.25 Nunito,system-ui,sans-serif">{{card.title}}</span>
+<span style="font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{card.text}}</span>
+<span style="font:800 16px/1 Nunito,system-ui,sans-serif;color:var(--c2B6F8E);padding-top:6px">Abrir →</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1120px;margin:0 auto;padding:24px 24px 64px">
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<div style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cE3F1F8);border-radius:24px;padding:28px">
+<span style="font:800 20px/1.2 Nunito,system-ui,sans-serif">Sin prisa</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Explora a tu ritmo. Nada se guarda ni te compromete a nada.</span>
+</div>
+<div style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cE3F3EA);border-radius:24px;padding:28px">
+<span style="font:800 20px/1.2 Nunito,system-ui,sans-serif">Datos oficiales</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Notas de corte reales de cada curso y ponderaciones por materia, sin cifras inventadas.</span>
+</div>
+<div style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cDDF0EF);border-radius:24px;padding:28px">
+<span style="font:800 20px/1.2 Nunito,system-ui,sans-serif">Todo en un solo sitio</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Grados, universidades, notas de corte y fechas, sin abrir mil pestañas.</span>
+</div>
+</div>
+</section>
+<section style="max-width:1120px;margin:0 auto;padding:0 24px 40px">
+<div style="background:var(--cE3F3EA);border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font:800 28px/1.2 Nunito,system-ui,sans-serif">Preguntas frecuentes sobre la PAU y las notas de corte</h2>
+<p style="margin:0;font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">Dudas que suelen agobiar en estas fechas, con calma y sin letra pequeña.</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Y si suspendo la PAU?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">No pasa nada irreparable. Normalmente hay una convocatoria extraordinaria (hacia julio) para repetir lo que no hayas aprobado, y tu nota de Bachillerato se mantiene. Para acceder necesitas al menos un 4 en la fase obligatoria y un 5 de nota de acceso.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Aprobar la PAU con un 5 es suficiente para entrar en el grado que quiero?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Aprobar te permite pedir plaza, pero entrar depende de tu nota de admisión y de cuántas plazas haya. En grados con nota de corte baja, o con un 5,000, suele entrar quien ha aprobado; en los más demandados hace falta bastante más.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Y si no llego a la nota de corte de mi grado favorito?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">La nota de corte es una referencia del año pasado, no una garantía ni un muro: cambia cada curso. Puedes ordenar varias opciones por preferencia, esperar a las siguientes listas, valorar grados afines o intentar subir nota en la fase voluntaria.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Cuánto cuenta el Bachillerato y cuánto la PAU?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Tu nota de acceso es un 60 % de la media de Bachillerato y un 40 % de la fase obligatoria de la PAU. Es decir, llegas a la PAU con más de la mitad de la nota ya hecha.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Cuántas materias de la fase voluntaria me conviene hacer?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Puedes hacer hasta cuatro, pero para cada grado solo suman las dos que mejor ponderen, y solo si sacas un 5 o más. No hace falta hacerlas todas: elige las que se te den bien y que ponderen en los grados que te interesan.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Puedo repetir la PAU o materias para subir nota?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Sí, puedes presentarte de nuevo para mejorar y se tiene en cuenta tu mejor calificación. Consulta en tu universidad los plazos y la vigencia de las notas de cada materia.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Qué es exactamente la nota de corte?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Es la nota de admisión del último estudiante que consiguió plaza en un grado el curso anterior. En esta web usamos la del Grupo 1 (Bachillerato y FP) de la convocatoria ordinaria de 2025-26.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Cómo se decide quién entra si hay más solicitudes que plazas?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Se ordena a las personas solicitantes por nota de admisión, de mayor a menor, y se van adjudicando plazas según tus preferencias. La última nota que consigue plaza es la nota de corte de ese año.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Puedo pedir revisión de un examen?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Sí. Tras publicarse las notas hay un plazo corto para solicitar la revisión de tus calificaciones. Mira las fechas exactas que publique cada año la Comunidad de Madrid.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Y si no entro en ninguna de mis opciones?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Es menos raro de lo que parece y tiene salida: suele haber más listas y plazas vacantes después, puedes mirar grados afines, ciclos formativos de grado superior o volver a presentarte para subir nota.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Y si me equivoco de grado?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Es más habitual de lo que se piensa. Según la universidad, se puede cambiar de grado y convalidar asignaturas ya aprobadas. Tomar una decisión razonada ahora ayuda, pero no es irreversible.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿Las notas de corte de este año serán las mismas?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">No. Las que ves son las de 2025-26 y sirven de orientación. Las de este año pueden subir o bajar, y solo valen las que publique cada universidad.</p></details>
+<details style="background:var(--cFFFFFF);border:1px solid var(--cC3DBE8);border-radius:18px;padding:4px 20px"><summary style="cursor:pointer;min-height:52px;display:flex;align-items:center;font:800 17px/1.35 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">¿De dónde salen los datos de esta web?</summary><p style="margin:0 0 16px;font:600 16px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">De los documentos publicados por las universidades públicas de Madrid y la Comunidad de Madrid: notas de corte 2025-26 y ponderaciones 2026-27, además de un archivo de la UPM para la evolución de años anteriores. Más detalles al final de esta página.</p></details>
+</div>
+</div>
+</section>
+<section style="max-width:1120px;margin:0 auto;padding:0 24px 64px">
+<div style="background:var(--cF3F9FC);border:1px solid var(--cD3E5EE);border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:20px">
+<h2 style="margin:0;font:800 28px/1.2 Nunito,system-ui,sans-serif">Sobre buscartucarrera.com</h2>
+<p style="margin:0;font:600 17px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A);max-width:820px">buscartucarrera.com es una herramienta de orientación para quienes terminan Bachillerato y quieren elegir grado en las universidades públicas de la Comunidad de Madrid. Reúne en un solo sitio un cuestionario de orientación, el listado de grados con sus notas de corte, un comparador, una calculadora de nota de PAU con ponderaciones y las fechas clave del proceso.</p>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cE3F1F8);border-radius:20px;padding:22px">
+<span style="font:800 18px/1.3 Nunito,system-ui,sans-serif">De dónde salen los datos</span>
+<span style="font:600 15px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Notas de corte 2025-26 (Grupo 1: pruebas de acceso y FP, convocatoria ordinaria): documento de notas de corte publicado para la web por las universidades públicas de Madrid y la Comunidad de Madrid. Ponderaciones de materias de modalidad 2026-27: «Parámetros de ponderación de las materias de modalidad en las universidades públicas madrileñas». Evolución 2022-23 a 2024-25 y ponderaciones previas: archivo de la UPM.</span>
+</div>
+<div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cE3F3EA);border-radius:20px;padding:22px">
+<span style="font:800 18px/1.3 Nunito,system-ui,sans-serif">Cómo calculamos tu nota</span>
+<span style="font:600 15px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de acceso = 0,6 × nota media de Bachillerato + 0,4 × media de la fase obligatoria (sobre 10). Nota de admisión = nota de acceso + hasta dos materias ponderadas (0,1 o 0,2) con un 5 o más (sobre 14). Se compara con la nota de corte del último curso publicado.</span>
+</div>
+<div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--cDDF0EF);border-radius:20px;padding:22px">
+<span style="font:800 18px/1.3 Nunito,system-ui,sans-serif">Qué debes tener en cuenta</span>
+<span style="font:600 15px/1.6 Nunito,system-ui,sans-serif;color:var(--c47657A)">Es un servicio informativo e independiente, sin vinculación oficial con las universidades ni con la Comunidad de Madrid. Los cálculos son orientativos: las notas de corte cambian cada año y solo valen las cifras publicadas por cada universidad. Alcance actual: universidades públicas; centros adscritos y universidades privadas no están incluidos.</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{isQuiz}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:760px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:700 16px/1 Nunito,system-ui,sans-serif;color:var(--c47657A)">Pregunta {{quizNumber}} de {{quizTotal}}</span>
+<div style="height:10px;border-radius:999px;background:var(--cD3E5EE);overflow:hidden"><div style="{{quizBarStyle}}"></div></div>
+</div>
+<h2 style="margin:0;font:800 34px/1.25 Nunito,system-ui,sans-serif">{{quizQuestion}}</h2>
+<p style="margin:0;font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">No hay respuestas correctas: elige la que más se parezca a ti. Cuantas más respuestas sinceras, más afinado sale el resultado.</p>
+<div style="display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{quizOptions}}" as="opt" hint-placeholder-count="4">
+<button type="button" onClick="{{opt.pick}}" style="text-align:left;min-height:64px;padding:18px 24px;border-radius:20px;border:2px solid var(--cC3DBE8);background:var(--cFFFFFF);color:var(--c1D3A4B);font:700 19px/1.35 Nunito,system-ui,sans-serif">{{opt.label}}</button>
+</sc-for>
+</div>
+<div>
+<sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{quizBack}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 16px/1 Nunito,system-ui,sans-serif">← Atrás</button>
+</sc-if>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{showList}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1120px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:24px">
+
+<sc-if value="{{isResults}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Estas áreas encajan contigo</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Según tus respuestas, estas son las áreas con más afinidad. Debajo tienes los grados de esas áreas con sus notas de corte reales.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{resultAreas}}" as="area" hint-placeholder-count="2">
+<span style="background:var(--cCFE8D8);color:var(--c1B5A44);font:800 16px/1 Nunito,system-ui,sans-serif;padding:10px 16px;border-radius:999px">{{area.label}}</span>
+</sc-for>
+</div>
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:20px;padding:20px 24px;display:flex;flex-direction:column;gap:12px">
+<span style="font:800 18px/1.2 Nunito,system-ui,sans-serif">Cómo se reparten tus respuestas</span>
+<sc-for list="{{areaBars}}" as="ab" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;gap:12px;font:700 15px/1.3 Nunito,system-ui,sans-serif"><span>{{ab.label}}</span><span>{{ab.pct}}</span></div>
+<div style="height:10px;border-radius:999px;background:var(--cD3E5EE);overflow:hidden"><div style="{{ab.barStyle}}"></div></div>
+</div>
+</sc-for>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Es una orientación, no un veredicto: muchas personas encajan en más de un área.</span>
+</div>
+<sc-if value="{{resultsNoData}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFBF1DF);border-radius:16px;padding:16px 20px;font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c6B4A12)">Todavía no hay datos de grados para estas áreas. Cuando se añadan más universidades, aparecerán aquí. Mientras tanto puedes explorar todos los grados disponibles.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isGrados}}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Explorar Grados Universitarios</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Busca por nombre, filtra por área o por universidad y ve cómo han evolucionado las notas de corte. Puedes cambiar de idea tantas veces como quieras.</p>
+<div style="display:flex;flex-direction:column;gap:8px;max-width:560px">
+<label for="g-search" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Buscar un grado</label>
+<input id="g-search" type="search" placeholder="Por ejemplo, informática o biotecnología" value="{{search}}" onChange="{{onSearch}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Área</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{ramaChips}}" as="chip" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{chip.pressed}}" onClick="{{chip.pick}}" style="{{chip.style}}">{{chip.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Universidad</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{uniChips}}" as="chip" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{chip.pressed}}" onClick="{{chip.pick}}" style="{{chip.style}}">{{chip.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="g-order" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Ordenar por</label>
+<select id="g-order" value="{{order}}" onChange="{{onOrder}}" style="min-height:48px;padding:0 12px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 16px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+<option value="nombre">Nombre (A-Z)</option>
+<option value="corte-desc">Nota de corte, de mayor a menor</option>
+<option value="corte-asc">Nota de corte, de menor a mayor</option>
+</select>
+</div>
+<span style="font:800 18px/1.3 Nunito,system-ui,sans-serif;padding-top:26px">{{totalCount}} grados</span>
+</div>
+<sc-if value="{{uniNoData}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFBF1DF);border-radius:16px;padding:16px 20px;font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c6B4A12)">Aún no tenemos cargados los datos oficiales de {{uniSelected}}. En cuanto estén, aparecerán aquí con sus notas de corte y ponderaciones.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{hasResult}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cE3F3EA);border-radius:20px;padding:16px 20px;font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">Con tu nota de acceso ({{naText}}) te mostramos tu nota de admisión estimada para cada grado y si llega a la nota de corte de 2025-26. La de este año puede variar.</div>
+</sc-if>
+<sc-if value="{{noResult}}" hint-placeholder-val="{{ true }}">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:20px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<span style="font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">¿Quieres saber si te llega la nota para cada grado?</span>
+<button type="button" onClick="{{goPau}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--greenBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Calcular mi nota de PAU</button>
+</div>
+</sc-if>
+
+<sc-if value="{{hasCompare}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cE3F3EA);border-radius:20px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<span style="font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">{{cmpHint}}</span>
+<button type="button" onClick="{{goCompare}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--greenBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Ver comparación</button>
+</div>
+</sc-if>
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{gradoItems}}" as="g" hint-placeholder-count="4">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px">
+<div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px">
+<span style="font:800 22px/1.25 Nunito,system-ui,sans-serif">{{g.name}}</span>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+<span style="background:var(--accBg);color:var(--onAccent);font:800 14px/1 Nunito,system-ui,sans-serif;padding:7px 12px;border-radius:999px">{{g.uni}}</span>
+<span style="background:var(--cE3F1F8);color:var(--c1D4C66);font:700 14px/1 Nunito,system-ui,sans-serif;padding:7px 12px;border-radius:999px">{{g.rama}}</span>
+<sc-if value="{{g.showBadge}}" hint-placeholder-val="{{ false }}">
+<span style="{{g.badgeStyle}}">{{g.badgeLabel}}</span>
+</sc-if>
+</div>
+<span style="font:600 16px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{g.centro}}</span>
+<span style="font:700 16px/1.4 Nunito,system-ui,sans-serif">Nota de corte 2025-26: {{g.corte}}<span style="font:600 16px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">  ·  {{g.cambio}}</span></span>
+<sc-if value="{{g.hasMine}}" hint-placeholder-val="{{ false }}">
+<span style="font:700 16px/1.4 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">Tu nota de admisión (sobre 14): {{g.mineText}}</span>
+</sc-if>
+<sc-if value="{{g.noW}}" hint-placeholder-val="{{ false }}">
+<span style="font:600 15px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">Sin ponderaciones cargadas para este grado: el estado compara tu nota de acceso con la nota de corte y no es exacto.</span>
+</sc-if>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<button type="button" onClick="{{g.toggle}}" style="{{g.cmpStyle}}">{{g.cmpLabel}}</button>
+<button type="button" onClick="{{g.open}}" style="min-height:48px;padding:0 26px;border-radius:999px;border:0;background:var(--accBg);color:var(--onAccent);font:700 17px/1 Nunito,system-ui,sans-serif">Ver ficha</button>
+</div>
+</div>
+</sc-for>
+</div>
+
+<sc-if value="{{canMore}}" hint-placeholder-val="{{ false }}">
+<div>
+<button type="button" onClick="{{showMore}}" style="min-height:48px;padding:0 26px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 17px/1 Nunito,system-ui,sans-serif">Mostrar más grados ({{remaining}} restantes)</button>
+</div>
+</sc-if>
+
+<sc-if value="{{listEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:20px;padding:24px;font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">No hay grados con esos filtros. Prueba con otra búsqueda, otra área u otra universidad.</div>
+</sc-if>
+
+<sc-if value="{{isResults}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<button type="button" onClick="{{goGrados}}" style="min-height:48px;padding:0 24px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 17px/1 Nunito,system-ui,sans-serif">Ver todos los grados</button>
+<button type="button" onClick="{{startQuiz}}" style="min-height:48px;padding:0 24px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 17px/1 Nunito,system-ui,sans-serif">Repetir cuestionario</button>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{isFicha}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1120px;margin:0 auto;padding:40px 24px 64px;display:flex;flex-direction:column;gap:28px">
+<div>
+<button type="button" onClick="{{goGrados}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 16px/1 Nunito,system-ui,sans-serif">← Volver a grados</button>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">{{fichaTitle}}</h1>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<span style="background:var(--accBg);color:var(--onAccent);font:800 15px/1 Nunito,system-ui,sans-serif;padding:8px 14px;border-radius:999px">{{fichaUni}}</span>
+<span style="background:var(--cE3F1F8);color:var(--c1D4C66);font:700 15px/1 Nunito,system-ui,sans-serif;padding:8px 14px;border-radius:999px">{{fichaRama}}</span>
+<sc-if value="{{fichaHasCodigo}}" hint-placeholder-val="{{ true }}">
+<span style="background:var(--cE3F3EA);color:var(--c1B5A44);font:700 15px/1 Nunito,system-ui,sans-serif;padding:8px 14px;border-radius:999px">{{fichaCodigoText}}</span>
+</sc-if>
+<span style="background:var(--cE3F3EA);color:var(--c1B5A44);font:700 15px/1 Nunito,system-ui,sans-serif;padding:8px 14px;border-radius:999px">{{fichaCredText}}</span>
+</div>
+<span style="font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{fichaCentro}}</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{fichaG2}}</span>
+<sc-if value="{{fichaPars}}" hint-placeholder-val="{{ false }}">
+<span style="font:600 15px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">P.A.R.S. significa Programa Académico con Recorrido Sucesivo.</span>
+</sc-if>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+<div style="flex:2 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">
+
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">Nota de corte por curso</h2>
+<sc-if value="{{fichaHasHist}}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div role="img" aria-label="{{fichaChartLabel}}" style="display:flex;gap:16px">
+<sc-for list="{{fichaBars}}" as="b" hint-placeholder-count="4">
+<div style="flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px">
+<span style="font:800 16px/1.2 Nunito,system-ui,sans-serif">{{b.value}}</span>
+<div style="height:150px;width:100%;display:flex;align-items:flex-end;justify-content:center">
+<div style="{{b.barStyle}}"></div>
+</div>
+<span style="font:700 14px/1.2 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{b.curso}}</span>
+</div>
+</sc-for>
+</div>
+<span style="font:700 16px/1.5 Nunito,system-ui,sans-serif">{{fichaCambio}}</span>
+</div>
+</sc-if>
+<sc-if value="{{fichaOnlyOne}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font:800 40px/1.05 Nunito,system-ui,sans-serif;color:var(--c1D5873)">{{fichaCorte}}</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de corte 2025-26. De esta universidad solo tenemos el curso 2025-26 del documento oficial de la Comunidad de Madrid.</span>
+</div>
+</sc-if>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de corte del Grupo 1 (Bachillerato y FP), convocatoria ordinaria. Una nota de 5,000 es el mínimo posible: indica que no hubo competencia por la plaza. Si no hay dato, el grado no figuraba ese curso.</span>
+</div>
+
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">Materias que suben tu nota</h2>
+<sc-if value="{{fichaHasW}}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Si las apruebas con un 5 o más, suman a tu nota de acceso: las dos que más te beneficien se multiplican por 0,1 o 0,2.</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font:800 16px/1.2 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">Ponderan 0,2</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{fichaW2}}" as="m" hint-placeholder-count="4">
+<span style="background:var(--cCFE8D8);color:var(--c1B5A44);font:700 15px/1.2 Nunito,system-ui,sans-serif;padding:9px 14px;border-radius:999px">{{m.t}}</span>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font:800 16px/1.2 Nunito,system-ui,sans-serif;color:var(--c1D4C66)">Ponderan 0,1</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{fichaW1}}" as="m" hint-placeholder-count="4">
+<span style="background:var(--cE3F1F8);color:var(--c1D4C66);font:700 15px/1.2 Nunito,system-ui,sans-serif;padding:9px 14px;border-radius:999px">{{m.t}}</span>
+</sc-for>
+</div>
+</div>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Ponderaciones del curso 2026-27 según el documento oficial de las universidades públicas de Madrid.</span>
+</div>
+</sc-if>
+<sc-if value="{{fichaNoW}}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Este grado no tiene ponderaciones en los datos cargados.</p>
+</sc-if>
+</div>
+</div>
+
+<div style="flex:1 1 300px;min-width:0;background:var(--cE3F3EA);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">Tu nota</h2>
+<sc-if value="{{fichaMineShow}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:700 15px/1.2 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">{{fichaMineTitle}}</span>
+<span style="font:800 40px/1.05 Nunito,system-ui,sans-serif;color:var(--c1D5873)">{{fichaMineText}}</span>
+<sc-if value="{{fichaBadgeShow}}" hint-placeholder-val="{{ false }}">
+<span style="{{fichaBadgeStyle}}">{{fichaBadgeLabel}}</span>
+</sc-if>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">Comparada con la nota de corte de 2025-26. La de este año puede variar.</span>
+</div>
+</sc-if>
+<sc-if value="{{fichaMineNo}}" hint-placeholder-val="{{ true }}">
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">Calcula tu nota de PAU y verás aquí si te llega a este grado.</span>
+</sc-if>
+<button type="button" onClick="{{fichaToggle}}" style="{{fichaCmpStyle}}">{{fichaCmpLabel}}</button>
+<sc-if value="{{hasCompare}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{goCompare}}" style="min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--accBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Ver comparación ({{cmpCount}})</button>
+</sc-if>
+<button type="button" onClick="{{goPau}}" style="min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--greenBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Calcular mi nota de PAU</button>
+</div>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isCompare}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1120px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Comparar grados</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A);max-width:720px">Elige entre 2 y 3 grados y compáralos lado a lado: notas de corte de cada curso, materias que ponderan y cómo te encaja tu nota.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;max-width:560px">
+<span style="font:700 16px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{cmpHint}}</span>
+<label for="c-search" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Buscar un grado para añadir</label>
+<input id="c-search" type="search" placeholder="Escribe al menos 2 letras" value="{{cmpSearch}}" onChange="{{onCmpSearch}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+<sc-if value="{{cmpHasSearch}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+<sc-for list="{{cmpSearchItems}}" as="r" hint-placeholder-count="3">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:18px;padding:14px 18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 280px">
+<span style="font:800 17px/1.3 Nunito,system-ui,sans-serif">{{r.name}}</span>
+<span style="font:600 14px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{r.uni}}</span>
+</div>
+<button type="button" onClick="{{r.toggle}}" style="{{r.style}}">{{r.label}}</button>
+</div>
+</sc-for>
+<sc-if value="{{cmpSearchEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">No hay grados con ese nombre.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{cmpTooFew}}" hint-placeholder-val="{{ true }}">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:20px;padding:24px;font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Elige al menos 2 grados para ver la comparación. También puedes añadirlos con el botón Comparar del listado de grados.</div>
+</sc-if>
+
+<sc-if value="{{cmpReady}}" hint-placeholder-val="{{ false }}">
+<div style="overflow-x:auto;background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px">
+<div style="{{cmpMinStyle}}">
+<div style="{{cmpHeadStyle}}">
+<div></div>
+<sc-for list="{{cmpHeads}}" as="h" hint-placeholder-count="2">
+<div style="padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0">
+<span style="font:800 20px/1.25 Nunito,system-ui,sans-serif">{{h.name}}</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<button type="button" onClick="{{h.open}}" style="min-height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--accBg);color:var(--onAccent);font:700 15px/1 Nunito,system-ui,sans-serif">Ver ficha</button>
+<button type="button" onClick="{{h.remove}}" style="min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--cC3DBE8);background:var(--cFFFFFF);color:var(--c47657A);font:700 15px/1 Nunito,system-ui,sans-serif">Quitar</button>
+</div>
+</div>
+</sc-for>
+</div>
+<sc-for list="{{cmpRows}}" as="row" hint-placeholder-count="12">
+<div style="{{cmpRowStyle}}">
+<div style="padding:18px 20px;font:800 15px/1.4 Nunito,system-ui,sans-serif;color:var(--c2B6F8E)">{{row.label}}</div>
+<sc-for list="{{row.cells}}" as="cell" hint-placeholder-count="2">
+<div style="padding:18px 20px;min-width:0">
+<sc-if value="{{cell.isBadge}}" hint-placeholder-val="{{ false }}">
+<span style="{{cell.badgeStyle}}">{{cell.text}}</span>
+</sc-if>
+<sc-if value="{{cell.isText}}" hint-placeholder-val="{{ true }}">
+<span style="{{cell.style}}">{{cell.text}}</span>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{noResult}}" hint-placeholder-val="{{ true }}">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:20px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<span style="font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">¿Quieres ver si te llega la nota a cada grado? Calcula tu nota de PAU y aparecerá en la fila "Tu nota de admisión".</span>
+<button type="button" onClick="{{goPau}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--greenBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Calcular mi nota de PAU</button>
+</div>
+</sc-if>
+<p style="margin:0;font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Notas de corte del Grupo 1, convocatoria ordinaria. "Cambio" es la nota de 2025-26 menos la de 2023-24.</p>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{isPau}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1120px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Calculadora de nota de PAU</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A);max-width:720px">Calcula tu nota de acceso y tu nota de admisión para cada grado con sus ponderaciones reales. Es un cálculo orientativo: la nota oficial la publica cada universidad.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+<div style="flex:3 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">1. Nota media de Bachillerato</h2>
+<label for="pau-nmb" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Tu nota media (de 0 a 10)</label>
+<input id="pau-nmb" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="Por ejemplo, 8,5" value="{{nmb}}" onChange="{{onNmb}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">2. Fase obligatoria de la PAU</h2>
+<p style="margin:0;font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Las notas de tus cuatro exámenes (de 0 a 10). En el cuarto, elige la materia de modalidad.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<sc-for list="{{examFields}}" as="f" hint-placeholder-count="3">
+<div style="flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<label for="{{f.id}}" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{f.label}}</label>
+<input id="{{f.id}}" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="0 a 10" value="{{f.value}}" onChange="{{f.onChange}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+</sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<div style="flex:2 1 260px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<label for="pau-modm" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Materia de modalidad</label>
+<select id="pau-modm" value="{{modm}}" onChange="{{onModm}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 12px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 17px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+<sc-for list="{{matOptions}}" as="o" hint-placeholder-count="5">
+<option value="{{o.v}}">{{o.t}}</option>
+</sc-for>
+</select>
+</div>
+<div style="flex:1 1 160px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<label for="pau-modn" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de modalidad</label>
+<input id="pau-modn" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="0 a 10" value="{{modn}}" onChange="{{onModn}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+</div>
+</div>
+
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">3. Fase voluntaria (opcional)</h2>
+<p style="margin:0;font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Hasta 4 materias para subir nota. Solo cuentan las que tienen un 5 o más, y para cada grado se suman las dos que más te beneficien.</p>
+<sc-for list="{{volFields}}" as="v" hint-placeholder-count="4">
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<div style="flex:2 1 260px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<label for="{{v.idM}}" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{v.labelM}}</label>
+<select id="{{v.idM}}" value="{{v.valueM}}" onChange="{{v.onM}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 12px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 17px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+<sc-for list="{{matOptions}}" as="o" hint-placeholder-count="5">
+<option value="{{o.v}}">{{o.t}}</option>
+</sc-for>
+</select>
+</div>
+<div style="flex:1 1 160px;min-width:0;display:flex;flex-direction:column;gap:8px">
+<label for="{{v.idN}}" style="font:700 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{v.labelN}}</label>
+<input id="{{v.idN}}" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="0 a 10" value="{{v.valueN}}" onChange="{{v.onN}}" style="width:100%;box-sizing:border-box;min-height:52px;padding:0 16px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 18px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+</div>
+</div>
+</sc-for>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Ponderaciones 2026-27 de las universidades públicas madrileñas. Algunas materias solo ponderan en ciertos casos (por ejemplo, Francés en Lengua Extranjera adicional): consulta la tabla oficial. Cálculo orientativo.</span>
+</div>
+
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">4. Tu nota de admisión con ponderaciones (sobre 14)</h2>
+<p style="margin:0;font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Elige un grado y verás cómo suman las ponderaciones de tus materias a tu nota de acceso.</p>
+<sc-if value="{{pauNeedOk}}" hint-placeholder-val="{{ true }}">
+<span style="font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c1D4C66)">Completa antes los pasos 1 y 2 para poder calcularla.</span>
+</sc-if>
+<sc-if value="{{showOk}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<label for="pau-q" style="font:800 16px/1.3 Nunito,system-ui,sans-serif;color:var(--c1D3A4B)">Tu nota de admisión en un grado (sobre 14)</label>
+<input id="pau-q" type="search" placeholder="Escribe un grado, por ejemplo Medicina" value="{{pauQ}}" onChange="{{onPauQ}}" style="width:100%;box-sizing:border-box;min-height:48px;padding:0 14px;border:2px solid var(--cC3DBE8);border-radius:14px;font:700 16px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);background:var(--cFFFFFF)">
+<sc-if value="{{hasPauFound}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{pauFound}}" as="f" hint-placeholder-count="3">
+<button type="button" onClick="{{f.pick}}" style="text-align:left;min-height:44px;padding:8px 12px;border-radius:12px;border:2px solid var(--cD3E5EE);background:var(--cFFFFFF);color:var(--c1D3A4B);font:700 15px/1.3 Nunito,system-ui,sans-serif">{{f.name}}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{pauSel}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:6px;background:var(--cE3F3EA);border-radius:12px;padding:12px 14px">
+<span style="font:800 15px/1.3 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">{{pauSelName}}</span>
+<span style="font:800 26px/1.1 Nunito,system-ui,sans-serif;color:var(--c1D5873)">{{pauSelText}}</span>
+<span style="font:600 15px/1.5 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">{{pauSelBase}}</span>
+<sc-for list="{{pauParts}}" as="p" hint-placeholder-count="2">
+<span style="font:700 15px/1.5 Nunito,system-ui,sans-serif;color:var(--c1B5A44)">{{p.t}}</span>
+</sc-for>
+<sc-if value="{{pauNoParts}}" hint-placeholder-val="{{ false }}">
+<span style="font:600 15px/1.5 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">Ninguna de tus materias pondera en este grado, así que tu nota de admisión es tu nota de acceso.</span>
+</sc-if>
+<span style="font:600 14px/1.4 Nunito,system-ui,sans-serif;color:var(--c3D5F52)">{{pauSelCut}}</span>
+<sc-if value="{{pauSelBadge}}" hint-placeholder-val="{{ false }}">
+<span style="{{pauSelBadgeStyle}}">{{pauSelBadgeLabel}}</span>
+</sc-if>
+</div>
+</sc-if>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<button type="button" onClick="{{fillExample}}" style="min-height:48px;padding:0 24px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 16px/1 Nunito,system-ui,sans-serif">Probar con notas inventadas de ejemplo</button>
+<button type="button" onClick="{{clearPau}}" style="min-height:48px;padding:0 24px;border-radius:999px;border:2px solid var(--cC3DBE8);background:var(--cFFFFFF);color:var(--c47657A);font:700 16px/1 Nunito,system-ui,sans-serif">Borrar todo</button>
+</div>
+</div>
+
+<div style="flex:2 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div style="background:var(--cE3F1F8);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">Tu resultado</h2>
+
+<sc-if value="{{showEmpty}}" hint-placeholder-val="{{ true }}">
+<p style="margin:0;font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Escribe tu nota de Bachillerato y las cuatro notas de la fase obligatoria. Tu resultado aparecerá aquí, sin necesidad de pulsar nada.</p>
+<sc-if value="{{hasMissing}}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c1D4C66)">{{missingText}}</p>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{showFail}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFBF1DF);border-radius:16px;padding:16px 18px;font:700 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c6B4A12)">Con estas notas no se alcanzaría el mínimo para aprobar: hace falta al menos un 4 de media en la fase obligatoria y un 5 de nota de acceso. Tu nota de acceso saldría {{naText}}.</div>
+</sc-if>
+
+<sc-if value="{{showOk}}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:4px">
+<span style="font:700 15px/1.2 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de acceso (sobre 10)</span>
+<span style="font:800 48px/1.05 Nunito,system-ui,sans-serif;color:var(--c2B6F8E)">{{naText}}</span>
+<span style="font:600 15px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">Media de tu fase obligatoria: {{foText}}</span>
+</div>
+<sc-if value="{{hasWarn}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFBF1DF);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{warnItems}}" as="w" hint-placeholder-count="1">
+<span style="font:700 14px/1.4 Nunito,system-ui,sans-serif;color:var(--c6B4A12)">{{w.t}}</span>
+</sc-for>
+</div>
+</sc-if>
+<p style="margin:0;font:600 15px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Nota de acceso = 0,6 × Bachillerato + 0,4 × fase obligatoria. Tu nota de admisión de cada grado suma además hasta 4 puntos de las dos materias que mejor ponderen en ese grado (sobre 14).</p>
+
+</sc-if>
+</div>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{showOk}}" hint-placeholder-val="{{ false }}">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font:800 22px/1.2 Nunito,system-ui,sans-serif">¿A qué grados te llega?</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span style="{{sumOkStyle}}">Te llega: {{cntOk}}</span>
+<span style="{{sumNearStyle}}">Muy cerca: {{cntNear}}</span>
+<span style="{{sumMaybeStyle}}">Depende de ponderaciones: {{cntMaybe}}</span>
+<span style="{{sumLowStyle}}">Por debajo: {{cntLow}}</span>
+</div>
+<span style="font:700 16px/1.4 Nunito,system-ui,sans-serif;color:var(--c47657A)">Los más exigentes a los que te llega</span>
+<sc-for list="{{topRows}}" as="r" hint-placeholder-count="5">
+<button type="button" onClick="{{r.open}}" style="text-align:left;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:16px;border:2px solid var(--cD3E5EE);background:var(--cFFFFFF);color:var(--c1D3A4B)">
+<span style="font:800 16px/1.3 Nunito,system-ui,sans-serif">{{r.name}}</span>
+<span style="font:600 14px/1.3 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{r.uni}} · corte 2025-26: {{r.corte}} · tu nota de admisión: {{r.mine}}</span>
+</button>
+</sc-for>
+<sc-if value="{{topEmpty}}" hint-placeholder-val="{{ false }}">
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Con estas notas no llegas todavía a ningún grado de los datos cargados. Prueba a añadir materias de la fase voluntaria.</span>
+</sc-if>
+<button type="button" onClick="{{goGrados}}" style="min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--accBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif">Ver todos los grados con tu nota</button>
+<span style="font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Se compara con la nota de corte de 2025-26 de cada grado. Si un grado no tiene ponderaciones cargadas, solo se usa tu nota de acceso como mínimo y se indica «Depende de las ponderaciones».</span>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isFechas}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:820px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Fechas de matriculación</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">El proceso, paso a paso y en orden. Los plazos son orientativos: confirma siempre las fechas oficiales en la web de cada universidad.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{fechaSteps}}" as="st" hint-placeholder-count="5">
+<div style="background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start">
+<span style="flex:0 0 auto;width:44px;height:44px;border-radius:999px;background:var(--cCFE8D8);color:var(--c1B5A44);font:800 20px/44px Nunito,system-ui,sans-serif;text-align:center">{{st.n}}</span>
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<span style="font:700 15px/1.2 Nunito,system-ui,sans-serif;color:var(--c2E7D62)">{{st.when}}</span>
+<span style="font:800 22px/1.25 Nunito,system-ui,sans-serif">{{st.title}}</span>
+<span style="font:600 17px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">{{st.text}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div>
+<button type="button" onClick="{{goPau}}" style="min-height:48px;padding:0 24px;border-radius:999px;border:0;background:var(--greenBg);color:var(--onAccent);font:700 17px/1 Nunito,system-ui,sans-serif">Calcular mi nota de PAU</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{isUnis}}" hint-placeholder-val="{{ false }}">
+<section style="max-width:1120px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<h1 style="margin:0;font:800 38px/1.2 Nunito,system-ui,sans-serif">Universidades públicas de Madrid</h1>
+<p style="margin:0;font:600 18px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Las seis universidades públicas y los grados de los que ya tenemos datos oficiales.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<sc-for list="{{uniCards}}" as="u" hint-placeholder-count="6">
+<div style="flex:1 1 320px;min-width:0;background:var(--cFFFFFF);border:1px solid var(--cD3E5EE);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:14px">
+<span aria-hidden="true" style="{{u.tileStyle}}">{{u.name}}</span>
+<span style="font:800 30px/1.1 Nunito,system-ui,sans-serif;color:var(--c2B6F8E)">{{u.name}}</span>
+</div>
+<span style="font:700 17px/1.4 Nunito,system-ui,sans-serif">{{u.full}}</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Zona: {{u.zona}}</span>
+<span style="font:600 16px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">Campus: {{u.campus}}</span>
+<span style="{{u.statusStyle}}">{{u.status}}</span>
+<div style="padding-top:6px">
+<button type="button" onClick="{{u.pick}}" style="min-height:44px;padding:0 20px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);font:700 16px/1 Nunito,system-ui,sans-serif">Ver sus grados</button>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+</sc-if>
+
+</main>
+
+<footer style="border-top:1px solid var(--cD3E5EE);background:var(--cFFFFFF)">
+<div style="max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;flex-direction:column;gap:6px;font:600 14px/1.5 Nunito,system-ui,sans-serif;color:var(--c47657A)">
+<span>buscartucarrera.com</span>
+<span>Notas de corte 2025-26 del Grupo 1 (pruebas de acceso y FP) de las universidades públicas de Madrid, según el documento oficial de la Comunidad de Madrid (centros adscritos y universidades privadas no incluidos). Ponderaciones 2026-27: documento oficial de las universidades públicas de Madrid. Evolución 2022-23 a 2024-25: solo UPM, según el archivo aportado.</span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  getS() {
+    return Object.assign({
+      dark: (function () { try { return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); } catch (e) { return false; } })(), screen: 'home', q: 0, answers: [], rama: 'all', uni: 'all', search: '', order: 'nombre', limit: 20,
+      fichaId: 'upm-0326', compare: [], cmpSearch: '',
+      pauQ: '', pauG: '', nmb: '', e1: '', e2: '', e3: '', modm: '', modn: '',
+      v1m: '', v1n: '', v2m: '', v2n: '', v3m: '', v3n: '', v4m: '', v4n: ''
+    }, this.state || {});
+  }
+
+  data() {
+    if (this._D) return this._D;
+    const CENTROS = ["E.T.S. de Arquitectura", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "E.T.S. de Ingenieros Industriales", "E.T.S. de Ingenieros de Minas y Energía", "E.T.S. de Ingenieros Navales", "E.T.S. de Ingenieros de Telecomunicación", "E.T.S. de Ingenieros Informáticos", "Facultad de Ciencias de la Actividad Física y del Deporte - INEF", "E.T.S. de Ingenieros en Topografía, Geodesia y Cartografía", "E.T.S. de Ingeniería de Montes, Forestal y del Medio Natural", "E.T.S. de Ingeniería Aeronáutica y del Espacio", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Escuela Politécnica de Enseñanza Superior", "E.T.S. de Edificación", "E.T.S. de Ingeniería y Diseño Industrial", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "E.T.S. de Ingeniería de Sistemas Informáticos", "Centro Superior de Diseño de Moda"];
+    const RAMAS = ["Ingeniería y Arquitectura", "Ciencias", "Ciencias de la Salud", "Ciencias Sociales y Jurídicas", "Artes y Humanidades"];
+    const MATS = ["Análisis Musical II", "Artes Escénicas II", "Ciencias Generales", "Dibujo Artístico II", "Latín II", "Matemáticas II", "Matemáticas Aplicadas a las CC.SS. II", "Biología", "Coro y Técnica Vocal II", "Dibujo Técnico II", "Dibujo Técnico Aplicado a las Artes Plásticas y al Diseño II", "Diseño", "Empresa y Diseño de Modelos de Negocio", "Física", "Fundamentos Artísticos", "Geografía", "Geología y Ciencias Ambientales", "Griego II", "Historia de la Filosofía / Historia de España (solo fase de admisión)", "Historia de la Música y de la Danza", "Historia del Arte", "Literatura Dramática", "Movimientos Culturales y Artísticos", "Química", "Técnicas de Expresión Gráfico-Plásticas", "Tecnología e Ingeniería", "Lengua Extranjera adicional"];
+    const CURSOS = ['2022-23', '2023-24', '2024-25', '2025-26'];
+    const RAW = [
+["UCM", null, null, "Administración y Dirección de Empresas", 3, 0, [null, null, null, 9.564], 6.99, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Administración y Dirección de Empresas (inglés)", 3, 0, [null, null, null, 10.714], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Administración y Dirección de Empresas - Ingeniería Informática", -1, 1, [null, null, null, 11.316], 6.51, "381", "5", "-1--1221-2-12212112-1--2-21"],
+["UCM", null, null, "Antropología Social y Cultural", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2222-1-1212212212-21--2"],
+["UCM", null, null, "Arqueología", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--211--2-11-22-22-2-1---2"],
+["UCM", null, null, "Bachelor of Arts in European Studies", -1, 3, [null, null, null, 5.0], 5.0, "180", "3", "-1--2222-1-12222122-2-12--2"],
+["UCM", null, null, "Bellas Artes", 4, 0, [null, null, null, 9.936], 9.29, "240", "4", "-2-2211--2221-21-22-2-2-2-2"],
+["UCM", null, null, "Biología", 1, 0, [null, null, null, 9.936], 9.1, "240", "4", null],
+["UCM", null, null, "Bioquímica", 1, 0, [null, null, null, 12.262], 8.41, "240", "4", "-----2-2-----2--2------2---"],
+["UCM", null, null, "Ciencia de los Datos Aplicada", 3, 0, [null, null, null, 10.937], 8.76, "240", "4", "--2--221-1-122-21-2----2-21"],
+["UCM", null, null, "Ciencia y Tecnología de los Alimentos", 1, 0, [null, null, null, 8.56], 7.3, "240", "4", "-----212-----2--2------2-1-"],
+["UCM", null, null, "Ciencias de las Religiones", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-2-2---2"],
+["UCM", null, null, "Ciencias Políticas", 3, 0, [null, null, null, 5.778], 7.54, "240", "4", null],
+["UCM", null, null, "Ciencias Políticas - Filosofía", -1, 1, [null, null, null, 5.089], 6.7, "366", "5", "-2--2222-1-12122122-2-21--2"],
+["UCM", null, null, "Comercio", 3, 0, [null, null, null, 8.15], 6.6, "240", "4", "-1--1221-1-12212112-1-12--2"],
+["UCM", null, null, "Comunicación Audiovisual", 3, 0, [null, null, null, 9.544], 9.63, "240", "4", "-2-22221-2222122112-2-11--2"],
+["UCM", null, null, "Conservación y Restauración del Patrimonio Cultural", 4, 0, [null, null, null, 9.6], 8.94, "240", "4", "-2-2211--2221-21-22-2-1-2-2"],
+["UCM", null, null, "Criminología", 3, 0, [null, null, null, 11.233], 8.14, "240", "4", "-1--2222-1-12122122-2--2--2"],
+["UCM", null, null, "Derecho", 3, 0, [null, null, null, 8.439], 7.16, "240", "4", "-1--2222-1-12122122-2--1--2"],
+["UCM", null, null, "Derecho - Administración y Dirección de Empresas", -1, 1, [null, null, null, 10.177], 5.69, "360", "6", "-1--2222-1-12212122-2--2--2"],
+["UCM", null, null, "Derecho - Ciencias Políticas", -1, 1, [null, null, null, 10.15], 7.6, "360", "6", "-1--2222-1-12122122-2-11--2"],
+["UCM", null, null, "Derecho - Estudios Jurídico Militares", -1, 1, [null, null, null, 8.875], 5.0, "345", "5", "-1--2222-1-12122122-2--1--2"],
+["UCM", null, null, "Derecho - Filosofía", -1, 1, [null, null, null, 8.428], 8.66, "390", "6", "-2--2222-1-12122122-2--1--2"],
+["UCM", null, null, "Derecho - Relaciones Laborales y Recursos Humanos", -1, 1, [null, null, null, 8.114], 6.93, "360", "6", "-1--2222-1-12122122-2--1--2"],
+["UCM", null, null, "Desarrollo de Videojuegos", 0, 0, [null, null, null, 9.689], 8.42, "240", "4", "-----2-1-2-212--1------1-2-"],
+["UCM", null, null, "Diseño", 4, 0, [null, null, null, 11.65], 8.3, "240", "4", "-2-2211--2221-21-22-2-1-1-2"],
+["UCM", null, null, "Economía", 3, 0, [null, null, null, 8.8], 6.65, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Economía (inglés)", 3, 0, [null, null, null, 9.545], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Economía - Matemáticas y Ciencia de Datos", -1, 1, [null, null, null, 12.716], 6.88, "378", "6", "-12-1222-1-12212112-1--2--1"],
+["UCM", null, null, "Economía - Relaciones Internacionales", -1, 1, [null, null, null, 12.315], 5.0, "360", "5", "-1--2222-1-12222112-2-12--2"],
+["UCM", null, null, "Educación Social", 3, 0, [null, null, null, 8.5], 7.62, "240", "4", "222222222222222211222222222"],
+["UCM", null, null, "Enfermería", 2, 0, [null, null, null, 11.603], 9.4, "240", "4", "-----2-2-----2--1------2---"],
+["UCM", null, null, "Español: Lengua y Literatura", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--1-11-22-22-221---2"],
+["UCM", null, null, "Estadística Aplicada", 3, 0, [null, null, null, 8.878], 7.95, "240", "4", "--2--221-1-122-21-2----2-21"],
+["UCM", null, null, "Estudios Ingleses", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-221---2"],
+["UCM", null, null, "Estudios Semíticos e Islámicos", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--1-11-22-22-221---2"],
+["UCM", null, null, "Estudios Teatrales", 4, 0, [null, null, null, 5.378], 7.5, "240", "4", "22-1211-21111-22-222222-1-2"],
+["UCM", null, null, "Farmacia", 2, 0, [null, null, null, 11.641], 8.56, "300", "5", "-----2-2-----2--1------2---"],
+["UCM", null, null, "Farmacia - Nutrición Humana y Dietética", -1, 1, [null, null, null, 12.328], 8.93, "417", "6", "-----212-----2--1------2---"],
+["UCM", null, null, "Filología Clásica", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", null],
+["UCM", null, null, "Filosofía", 4, 0, [null, null, null, 5.94], 8.79, "240", "4", "-2--222--1-11-22-22-2-2---2"],
+["UCM", null, null, "Filosofía, Política y Economía", 4, 0, [null, null, null, 8.384], 8.65, "240", "4", "-2--2222-1-12222122-2-22--2"],
+["UCM", null, null, "Finanzas, Banca y Seguros", 3, 0, [null, null, null, 9.42], 7.78, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Física", 1, 0, [null, null, null, 11.811], 8.03, "240", "4", "-----2-2-1---2--2------2---"],
+["UCM", null, null, "Fisioterapia", 2, 0, [null, null, null, 11.463], 9.21, "240", "4", null],
+["UCM", null, null, "Geografía y Ordenación del Territorio", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2222-2-12212122-2-12-22"],
+["UCM", null, null, "Geología", 1, 0, [null, null, null, 5.0], 5.0, "240", "4", "--2--2-2-1---2--2------2---"],
+["UCM", null, null, "Gestión y Administración Pública", 3, 0, [null, null, null, 5.228], 6.34, "240", "4", "-1--2222-1-12112122-2--1--2"],
+["UCM", null, null, "Gestión y Administración Pública - Economía", -1, 1, [null, null, null, 8.375], 5.87, "360", "5", "-1--2222-1-12212122-2-12--2"],
+["UCM", null, null, "Historia", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-2-1---2"],
+["UCM", null, null, "Historia - Filología Clásica", -1, 1, [null, null, null, 8.81], 8.09, "360", "6", "-2--222--1-12-22-22-221---2"],
+["UCM", null, null, "Historia del Arte", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--2-21-22-2222-2---2"],
+["UCM", null, null, "Información y Documentación", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-11-2221-1-22122122-2-11--1"],
+["UCM", null, null, "Ingeniería de Computadores", 0, 0, [null, null, null, 9.48], 6.96, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UCM", null, null, "Ingeniería de Datos e Inteligencia Artificial", 0, 0, [null, null, null, 12.775], 9.54, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UCM", null, null, "Ingeniería de Materiales", 0, 0, [null, null, null, 9.203], 5.7, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UCM", null, null, "Ingeniería del Software", 0, 0, [null, null, null, 10.15], 7.54, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UCM", null, null, "Ingeniería Electrónica de Comunicaciones", 0, 0, [null, null, null, 8.653], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UCM", null, null, "Ingeniería Geológica", 0, 0, [null, null, null, 5.361], 6.66, "240", "4", null],
+["UCM", null, null, "Ingeniería Informática", 0, 0, [null, null, null, 10.761], 8.03, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UCM", null, null, "Ingeniería Informática - Matemáticas", -1, 1, [null, null, null, 13.465], 8.34, "360", "5", "--2--2-2-2-112--2------2-2-"],
+["UCM", null, null, "Ingeniería Matemática", 0, 0, [null, null, null, 12.625], 8.7, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UCM", null, null, "Ingeniería Química", 0, 0, [null, null, null, 11.033], 7.0, "240", "4", null],
+["UCM", null, null, "Lenguas Modernas y sus Literaturas", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--211--1-22-21-22-221---2"],
+["UCM", null, null, "Lingüística y Lenguas Aplicadas", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "--2-222--1-112-2122-1-1--22"],
+["UCM", null, null, "Literatura General y Comparada", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--1-21-21-22-221---2"],
+["UCM", null, null, "Logopedia", 2, 0, [null, null, null, 9.2], 8.98, "240", "4", "--2--222----21--1-2----1---"],
+["UCM", null, null, "Maestro de Educación Infantil", 3, 0, [null, null, null, 9.05], 7.86, "240", "4", "222222222222222222222222222"],
+["UCM", null, null, "Maestro de Educación Primaria", 3, 0, [null, null, null, 10.262], 8.66, "240", "4", "222222222222222222222222222"],
+["UCM", null, null, "Maestro Educación Infantil - Maestro Educación Primaria", -1, 1, [null, null, null, 11.199], 8.0, "360", "5", "222222222222222222222222222"],
+["UCM", null, null, "Maestro Educación Infantil - Pedagogía", -1, 1, [null, null, null, 10.275], 7.73, "360", "5", "222222222222222222222222222"],
+["UCM", null, null, "Maestro Educación Primaria - Pedagogía", -1, 1, [null, null, null, 11.462], 8.58, "360", "5", "222222222222222222222222222"],
+["UCM", null, null, "Matemáticas", 1, 0, [null, null, null, 12.25], 9.57, "240", "4", "--2--212-1---2--2------2---"],
+["UCM", null, null, "Matemáticas - Física", -1, 1, [null, null, null, 13.698], 8.82, "360", "5", "--2--212-1---2--2------2---"],
+["UCM", null, null, "Matemáticas y Ciencia de Datos", 1, 0, [null, null, null, 11.964], 7.6, "240", "4", "--2--212-1---2--2------2---"],
+["UCM", null, null, "Medicina", 2, 0, [null, null, null, 13.1], 9.89, "360", "6", "-----2-2-----2--1------2--1"],
+["UCM", null, null, "Musicología", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "22--211-21-11-22-2222-----2"],
+["UCM", null, null, "Nutrición Humana y Dietética", 2, 0, [null, null, null, 10.1], 9.6, "240", "4", "-----212-----2--1------2--1"],
+["UCM", null, null, "Odontología", 2, 0, [null, null, null, 12.652], 9.6, "300", "5", "-----2-2-----2--1------2---"],
+["UCM", null, null, "Óptica y Optometría", 2, 0, [null, null, null, 7.863], 7.89, "240", "4", "--1--212-----2--1------2-1-"],
+["UCM", null, null, "Pedagogía", 3, 0, [null, null, null, 8.6], 8.7, "240", "4", "-1222222-1-1212212222222222"],
+["UCM", null, null, "Periodismo", 3, 0, [null, null, null, 6.575], 6.62, "240", "4", "-1--2221-1222222122-2-212-2"],
+["UCM", null, null, "Podología", 2, 0, [null, null, null, 9.453], 9.21, "240", "4", "-----212-----2--1------2---"],
+["UCM", null, null, "Psicología", 2, 0, [null, null, null, 10.525], 8.56, "240", "4", "--2--222----21--1-2----1---"],
+["UCM", null, null, "Psicología - Logopedia", -1, 1, [null, null, null, 10.525], 8.7, "360", "5", null],
+["UCM", null, null, "Publicidad y Relaciones Públicas", 3, 0, [null, null, null, 10.364], 7.88, "240", "4", "-22-1221-1222222112-2-212-2"],
+["UCM", null, null, "Química", 1, 0, [null, null, null, 10.111], 8.18, "240", "4", "-----2-2-----2--2------2---"],
+["UCM", null, null, "Química - Bioquímica", -1, 1, [null, null, null, 12.617], 6.49, "354", "5", "-----2-2-----2--2------2---"],
+["UCM", null, null, "Relaciones Internacionales", 3, 0, [null, null, null, 11.185], 8.93, "240", "4", "-1--2222-1-12122112-2-11--2"],
+["UCM", null, null, "Relaciones Laborales y Recursos Humanos", 3, 0, [null, null, null, 7.35], 8.11, "240", "4", "-1--2222-1-12112112-1-11--2"],
+["UCM", null, null, "Sociología", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2222-1-12122122-2-11--2"],
+["UCM", null, null, "Sociología - Relaciones Internacionales", -1, 1, [null, null, null, 10.514], 7.54, "360", "5", "-1--2222-1-12122122-2-11--2"],
+["UCM", null, null, "Terapia Ocupacional", 2, 0, [null, null, null, 9.089], 8.14, "240", "4", "-----212-----2--1------2--1"],
+["UCM", null, null, "Titulación Internacional en ADE (UCM - HWR Berlín)", -1, 3, [null, null, null, 11.948], null, "243", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Título Internacional Derecho (UCM - Sorbona)", -1, 3, [null, null, null, 11.449], 5.0, "240", "4", "-1--2222-1-12122122-2--1--2"],
+["UCM", null, null, "Título Internacional Economía (UCM - Sorbona)", -1, 3, [null, null, null, 12.062], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UCM", null, null, "Trabajo Social", 3, 0, [null, null, null, 7.14], 7.53, "240", "4", "-1--1222-1-12122112-1-11--1"],
+["UCM", null, null, "Traducción e Interpretación", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--222--1-12-22-22-221---2"],
+["UCM", null, null, "Turismo", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--1221-1-12222112-2-12--2"],
+["UCM", null, null, "Turismo - Comercio", -1, 1, [null, null, null, 7.211], 5.0, "345", "5", "-1--1221-1-12222112-2-12--2"],
+["UCM", null, null, "Veterinaria", 2, 0, [null, null, null, 11.814], 9.23, "300", "5", "-----2-2-----2--1------2---"],
+["UAM", null, null, "Administración y Dirección de Empresas", 3, 0, [null, null, null, 10.203], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UAM", null, null, "Análisis de Datos en la Empresa / Business Analytics", 3, 0, [null, null, null, 11.232], 6.54, "240", "4", "--1-1221-1--22121-1----2-11"],
+["UAM", null, null, "Antropología Social y Cultural", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-2212-2---2"],
+["UAM", null, null, "Arqueología", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--211--2-11-22122-2-1---2"],
+["UAM", null, null, "Biología", 1, 0, [null, null, null, 9.714], 8.4, "240", "4", "--1--2-2-1---2--2------2---"],
+["UAM", null, null, "Bioquímica", 1, 0, [null, null, null, 12.067], 7.84, "240", "4", "-----2-2-1---2--2------2---"],
+["UAM", null, null, "Ciencia de la Actividad Física y del Deporte", 3, 0, [null, null, null, 10.56], 8.61, "240", "4", "112-1222-1-1221211211--2--1"],
+["UAM", null, null, "Ciencia e Ingeniería de Datos", 0, 0, [null, null, null, 11.311], 8.28, "240", "4", "-----2-2-2--12--1------1-2-"],
+["UAM", null, null, "Ciencia Política y Administración Pública", 3, 0, [null, null, null, 8.886], 5.0, "240", "4", "-1--2222-1-12122122-2-11--2"],
+["UAM", null, null, "Ciencia Política y Administración Pública - Mención en Gobierno y Dirección Pública", 3, 0, [null, null, null, 8.971], 5.0, "240", "4", null],
+["UAM", null, null, "Ciencia Política y Administración Pública - Mención en Relaciones Internacionales y Unión Europea", 3, 0, [null, null, null, 11.599], 5.0, "240", "4", null],
+["UAM", null, null, "Ciencia y Tecnología de los Alimentos", 1, 0, [null, null, null, 8.528], 9.28, "240", "4", "--2--212-1---2---------2-2-"],
+["UAM", null, null, "Ciencia, Tecnología y Humanidades (UAB, UAM y UC3M)", -1, 2, [null, null, null, 5.0], 5.0, "240", "4", "-22-2222-1-11222222-2-12-12"],
+["UAM", null, null, "Ciencias (UAB, UAM y UC3M)", -1, 2, [null, null, null, 7.7], 5.0, "240", "4", "--2--212-1---2--2-1----2-1-"],
+["UAM", null, null, "Ciencias Ambientales", 1, 0, [null, null, null, 7.686], 8.15, "240", "4", "--2--212-1---2--2------2---"],
+["UAM", null, null, "Ciencias Ambientales - Geografía, Geotecnologías y Sostenibilidad Territorial", -1, 1, [null, null, null, 6.58], 8.1, "354", "5", "-12-2222-2-12212222-1-12--2"],
+["UAM", null, null, "Derecho", 3, 0, [null, null, null, 9.837], 7.68, "240", "4", "-1--2222-1-12122122-2--1--2"],
+["UAM", null, null, "Derecho - Administración y Dirección de Empresas", -1, 1, [null, null, null, 10.928], 5.0, "360", "6", "-1--2222-1-12222122-1--2--2"],
+["UAM", null, null, "Derecho - Ciencia Política y Administración Pública", -1, 1, [null, null, null, 8.911], 7.25, "300", "5", "-1--2222-1-12222122-2-12--2"],
+["UAM", null, null, "Derecho - Mención en Dcho. de la Energía y del Medio Ambiente", 3, 0, [null, null, null, 9.214], 7.7, "240", "4", null],
+["UAM", null, null, "Derecho - Mención en Derecho de los Negocios Internacionales", 3, 0, [null, null, null, 11.575], 6.01, "240", "4", null],
+["UAM", null, null, "Derecho - Mención en Derecho Digital y de las Tecnologías", 3, 0, [null, null, null, 10.958], 5.0, "240", "4", null],
+["UAM", null, null, "Derecho - Mención en Derechos Humanos y Justicia Social", 3, 0, [null, null, null, 10.853], 8.53, "240", "4", null],
+["UAM", null, null, "Economía", 3, 0, [null, null, null, 9.603], 7.92, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UAM", null, null, "Economía (bilingüe)", 3, 0, [null, null, null, 9.19], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UAM", null, null, "Economía y Finanzas / Economics and Finance", 3, 0, [null, null, null, 10.905], 5.0, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UAM", null, null, "Enfermería", 2, 0, [null, null, null, 11.714], 9.38, "240", "4", "-----2-2-----2--1------2---"],
+["UAM", null, null, "Estudios Clásicos y de la Antigüedad", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--1-11-22-22-221---2"],
+["UAM", null, null, "Estudios de Asia y África - Árabe", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Estudios de Asia y África - Chino", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Estudios de Asia y África - Japonés", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Estudios Hispánicos: Lengua Española y sus Literaturas", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--1-12-22-222221---2"],
+["UAM", null, null, "Estudios Ingleses", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-221---2"],
+["UAM", null, null, "Estudios Internacionales", 3, 0, [null, null, null, 10.853], 8.26, "240", "4", "-1--222--1-12-22-22-2-1---2"],
+["UAM", null, null, "Estudios Internacionales - Estudios de Asia y África (Árabe)", -1, 1, [null, null, null, 10.336], 5.0, "348", "5", "-2--222--1-22-22-22-211---2"],
+["UAM", null, null, "Filosofía", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-11-22-22-2-2---2"],
+["UAM", null, null, "Filosofía - Historia", -1, 1, [null, null, null, 12.264], 8.49, "354", "5", "-2--222--1-12-22-22-2-2---2"],
+["UAM", null, null, "Filosofía - Historia y Ciencias de la Música y Tecnología Musical", -1, 1, [null, null, null, 5.0], 5.0, "354", "5", "22-1222-21-11-22-222222--12"],
+["UAM", null, null, "Filosofía, Política y Economía (UAB, UAM, UC3M y UPF)", -1, 2, [null, null, null, 11.82], 5.0, "240", "4", "-1--2221-1-12212122-1-21--2"],
+["UAM", null, null, "Física", 1, 0, [null, null, null, 12.014], 7.76, "240", "4", "-----2-2-1---2--2------2---"],
+["UAM", null, null, "Geografía, Geotecnologías y Sostenibilidad Territorial", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2222-2-12212122-1-12--2"],
+["UAM", null, null, "Gestión Aeronáutica", 3, 0, [null, null, null, 10.715], 8.19, "240", "4", "-1--1221-1-12212112-1--2--1"],
+["UAM", null, null, "Historia", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-2-1---2"],
+["UAM", null, null, "Historia - Estudios Internacionales", -1, 1, [null, null, null, 12.964], 5.0, "324", "5", "-2--222--1-12-22-22-2-1---2"],
+["UAM", null, null, "Historia del Arte", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--2-21-22-2222-2---2"],
+["UAM", null, null, "Historia del Arte - Estudios Clásicos y de la Antigüedad", -1, 1, [null, null, null, 5.0], 5.0, "330", "5", "-2--211--2-21-22-222222---2"],
+["UAM", null, null, "Historia del Arte - Historia", -1, 1, [null, null, null, 12.513], 8.56, "336", "5", "-2--222--2-22-22-2222-2---2"],
+["UAM", null, null, "Historia y Ciencias de la Música y Tecnología Musical", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "22-1211-21-11-22-222222--12"],
+["UAM", null, null, "Ingeniería Biomédica", 0, 0, [null, null, null, 12.5], 8.87, "240", "4", "-----2-2-2--12--1------2-2-"],
+["UAM", null, null, "Ingeniería de Tecnologías de Telecomunicación", 0, 0, [null, null, null, 9.56], 6.53, "240", "4", "-----2---1---2---------1-2-"],
+["UAM", null, null, "Ingeniería Informática", 0, 0, [null, null, null, 10.715], 7.92, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UAM", null, null, "Ingeniería Informática - Matemáticas", -1, 1, [null, null, null, 13.136], 8.82, "360", "5", "-----211-2-112--2------1-2-"],
+["UAM", null, null, "Ingeniería Química", 0, 0, [null, null, null, 10.528], 6.62, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UAM", null, null, "Lenguas Modernas, Cultura y Comunicación - Español", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Lenguas Modernas, Cultura y Comunicación - Francés", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Lenguas Modernas, Cultura y Comunicación - Inglés", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Maestro en Educación Infantil", 3, 0, [null, null, null, 8.911], 8.52, "240", "4", "222222222222222222222222222"],
+["UAM", null, null, "Maestro en Educación Infantil - Maestro en Educación Primaria", -1, 1, [null, null, null, 10.278], 8.01, "348", "5", "222222222222222222222222222"],
+["UAM", null, null, "Maestro en Educación Primaria", 3, 0, [null, null, null, 9.939], 9.1, "240", "4", "222222222222222222222222222"],
+["UAM", null, null, "Matemáticas", 1, 0, [null, null, null, 11.937], 7.82, "240", "4", "-----2-2-1---2--2------2---"],
+["UAM", null, null, "Medicina", 2, 0, [null, null, null, 12.978], 9.8, "360", "6", "-----2-2-----2--1------2---"],
+["UAM", null, null, "Nutrición Humana y Dietética", 2, 0, [null, null, null, 10.003], 8.74, "240", "4", "-----212-----2---------2---"],
+["UAM", null, null, "Nutrición Humana y Dietética - Ciencia y Tecnología de los Alimentos", -1, 1, [null, null, null, 10.87], 8.58, "342", "5", "--2--212-1---2---------2-2-"],
+["UAM", null, null, "Programa Académico en Máster en Ing. de Telecomunicación vía Grado en Ing. de Tecnologías de Telecomunicación", 0, 0, [null, null, null, 10.667], 5.0, "240", "4", null],
+["UAM", null, null, "Programa Académico en Máster en Ingeniería Informática vía Grado en Ingeniería Informática", 0, 0, [null, null, null, 11.711], 6.98, "240", "4", null],
+["UAM", null, null, "Psicología", 2, 0, [null, null, null, 10.426], 8.97, "240", "4", "--2--222----21--1-2----1---"],
+["UAM", null, null, "Química", 1, 0, [null, null, null, 9.986], 7.49, "240", "4", "-----2-2-1---2--2------2---"],
+["UAM", null, null, "Química (bilingüe)", 1, 0, [null, null, null, 9.102], 5.0, "240", "4", "-----2-2-1---2--2------2---"],
+["UAM", null, null, "Traducción e Interpretación (francés)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--222--1-12-22-22-221---2"],
+["UAM", null, null, "Traducción e Interpretación (francés) - Lenguas Modernas, Cultura y Comunicación (Francés)", -1, 1, [null, null, null, 5.79], 5.0, "330", "5", "-2--222--1-22-22-22-221---2"],
+["UAM", null, null, "Traducción e Interpretación (inglés)", 4, 0, [null, null, null, 6.7], 5.0, "240", "4", "-1--222--1-12-22-22-221---2"],
+["UAM", null, null, "Turismo", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2221-1-12222122-2-12--2"],
+["UPM", "0381", "E.T.S. de Arquitectura", "Arquitecto/a (PARS)", 0, 0, [11.011, 12.347, 12.9, 13.089], 8.6, "300", "5", "-----2-1-2-112--2------1-2-"],
+["UPM", "0325", "E.T.S. de Ingenieros Navales", "Arquitectura Naval / Ingeniería Marítima", 0, 0, [10.294, 10.265, 10.55, 10.467], 6.51, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0333", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Biotecnología", 0, 0, [13.168, 13.023, 12.925, 12.728], 8.23, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UPM", "0343", "E.T.S. de Ingenieros Informáticos", "Ciencia de Datos e Inteligencia Artificial (Campus de Montegancedo)", 0, 0, [12.534, 12.216, 11.736, 11.899], 8.98, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0344", "E.T.S. de Ingeniería de Sistemas Informáticos", "Ciencia de Datos e Inteligencia Artificial (Campus Sur)", 0, 0, [12.536, 12.216, 12.025, 12.139], 8.35, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0330", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Ciencias Agrarias y Bioeconomía", 1, 0, [5.0, 5.0, 6.053, 6.851], 5.0, "240", "4", "--2--212-2---2--2------2---"],
+["UPM", "0350", "Facultad de Ciencias de la Actividad Física y del Deporte - INEF", "Ciencias de la Actividad Física y del Deporte (INEF)", 3, 0, [10.153, 9.198, 9.439, 8.925], 7.19, "240", "4", "112-1222-1-1221211211--2--1"],
+["UPM", "0340", "Centro Superior de Diseño de Moda (centro adscrito)", "Diseño de Moda", 4, 0, [5.0, 5.0, 5.0, 5.0], 5.0, "240", "4", "-2-2122--2221-2--12-2-1-1-1"],
+["UPM", "0308", "E.T.S. de Edificación", "Edificación", 0, 0, [6.115, 6.42, 7.27, 7.637], 6.97, "240", "4", "-----2-1-2-112--2------1-2-"],
+["UPM", "0361", "E.T.S. de Edificación", "Edificación - Administración y Dirección de Empresas", 0, 1, [8.08, 7.938, 8.261, 8.115], 5.0, "399", "6", "----1211-2-122-121--1--1-21"],
+["UPM", "0300", "E.T.S. de Arquitectura", "Fundamentos de la Arquitectura", 0, 0, [11.198, 11.471, 11.336, 11.091], 7.73, "300", "5", "-----2-1-2-112--2------1-2-"],
+["UPM", "0338", "E.T.S. de Ingeniería Aeronáutica y del Espacio", "Gestión y Operaciones del Transporte Aéreo", 0, 0, [11.441, 11.472, 11.514, 11.478], 7.15, "240", "4", "-----2-1-2-122--1------1-2-"],
+["UPM", "0301", "E.T.S. de Ingeniería Aeronáutica y del Espacio", "Ingeniería Aeroespacial", 0, 0, [12.223, 12.484, 12.425, 12.484], 7.59, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0302", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Ingeniería Agrícola", 0, 0, [5.0, 8.01, 8.978, 8.173], 6.88, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0303", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Ingeniería Agroambiental", 0, 0, [5.0, 5.0, 5.0, 5.75], 6.88, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0304", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Ingeniería Alimentaria", 0, 0, [5.953, 5.0, 6.255, 7.015], 7.13, "240", "4", "-----2-2-2-122--2------2-2-"],
+["UPM", "0334", "E.T.S. de Ingenieros de Telecomunicación", "Ingeniería Biomédica", 0, 0, [12.921, 12.864, 12.704, 12.553], 8.89, "240", "4", "-----2-2-2-112--1------2-2-"],
+["UPM", "0306", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniería Civil y Territorial (Moncloa)", 0, 0, [7.938, 9.017, 9.85, 10.053], 5.0, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0346", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniería Civil y Territorial (Retiro)", 0, 0, [6.52, 8.12, 9.286, 9.675], 6.33, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0366", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniería Civil y Territorial - Administración y Dirección de Empresas", 0, 1, [10.151, 10.607, 10.9, 10.741], 5.0, "363", "5", "----1211-2-112-121--1--2-21"],
+["UPM", "0307", "E.T.S. de Ingeniería de Sistemas Informáticos", "Ingeniería de Computadores", 0, 0, [9.939, 9.974, 9.539, 9.311], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0309", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniería de la Energía", 0, 0, [11.057, 11.133, 11.069, 11.039], 5.0, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0339", "E.T.S. de Ingenieros en Topografía, Geodesia y Cartografía", "Ingeniería de las Tecnologías de la Información Geoespacial", 0, 0, [5.0, 6.19, 6.886, 7.31], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0310", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniería de Materiales", 0, 0, [8.952, 8.632, 9.136, 9.561], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0336", "E.T.S. de Ingenieros Industriales", "Ingeniería de Organización", 0, 0, [12.802, 12.592, 12.483, 12.636], 5.0, "240", "4", "-----2-1-2-122--1------2-2-"],
+["UPM", "0313", "E.T.S. de Ingenieros de Telecomunicación", "Ingeniería de Tecnologías y Servicios de Telecomunicación", 0, 0, [10.208, 9.59, 9.28, 9.408], 5.0, "240", "4", null],
+["UPM", "0314", "E.T.S. de Ingeniería de Montes, Forestal y del Medio Natural", "Ingeniería del Medio Natural", 0, 0, [5.0, 5.0, 5.0, 5.744], 6.09, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UPM", "0315", "E.T.S. de Ingeniería de Sistemas Informáticos", "Ingeniería del Software", 0, 0, [10.53, 10.467, 10.125, 10.036], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0316", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería Eléctrica", 0, 0, [10.322, 10.493, 10.415, 10.45], 7.01, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0362", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería Eléctrica - Ingeniería Electrónica Industrial y Automática", 0, 1, [11.603, 11.582, 11.514, 11.361], 6.36, "304,5", "5", "-----2-1-2-112--1------2-2-"],
+["UPM", "0317", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería Electrónica de Comunicaciones", 0, 0, [8.847, 8.473, 8.564, 8.361], 8.14, "240", "4", "-----2---2---2--1------1-2-"],
+["UPM", "0367", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería Electrónica de Comunicaciones - Ingeniería Telemática", 0, 1, [9.371, 9.327, 8.872, 8.214], 5.0, "300", "5", "-----2---2---2--1------1-2-"],
+["UPM", "0318", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería Electrónica Industrial y Automática", 0, 0, [10.867, 10.817, 10.825, 10.67], 7.48, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0319", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería en Diseño Industrial y Desarrollo de Producto", 0, 0, [12.575, 12.576, 12.414, 12.461], 8.2, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0360", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería en Diseño Industrial y Desarrollo del Producto - Ingeniería Mecánica", 0, 1, [13.068, 13.056, 12.896, 12.878], 6.94, "313,5", "5", "-----2-1-2-112--1------2-2-"],
+["UPM", "0320", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniería en Mineralúrgia y Metalúrgica de las Materias Primas", 0, 0, [6.15, 7.207, 8.114, 8.39], 7.02, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0320", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniería en Recursos Energéticos, Combustibles y Explosivos", 0, 0, [6.15, 7.207, 8.114, 8.39], 7.02, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0311", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería en Sistemas de Telecomunicación", 0, 0, [9.449, 9.372, 9.103, 9.186], 7.4, "240", "4", "-----2---2---2--1------1-2-"],
+["UPM", "0312", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería en Sonido e Imagen", 0, 0, [8.864, 8.474, 7.726, 8.066], 6.99, "240", "4", "-----2---2---2--1------1-2-"],
+["UPM", "0320", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniería en Tecnología Minera", 0, 0, [6.15, 7.207, 8.114, 8.39], 7.02, "240", "4", null],
+["UPM", "0347", "E.T.S. de Ingeniería Aeronáutica y del Espacio", "Ingeniería en Tecnologías Aeroespaciales", 0, 0, [null, 12.368, 12.275, 12.363], 7.5, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0337", "E.T.S. de Ingeniería de Montes, Forestal y del Medio Natural", "Ingeniería en Tecnologías Ambientales", 0, 0, [5.0, 5.0, 5.0, 6.464], 5.0, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UPM", "0321", "E.T.S. de Ingenieros Industriales", "Ingeniería en Tecnologías Industriales", 0, 0, [11.958, 12.138, 11.978, 12.114], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0322", "E.T.S. de Ingeniería de Montes, Forestal y del Medio Natural", "Ingeniería Forestal", 0, 0, [5.0, 5.0, 5.0, 5.404], 6.87, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UPM", "0320", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniería Geológica", 0, 0, [6.15, 7.207, 8.114, 8.39], 7.02, "240", "4", null],
+["UPM", "0323", "E.T.S. de Ingenieros en Topografía, Geodesia y Cartografía", "Ingeniería Geomática", 0, 0, [5.0, 5.0, 5.0, 6.686], 6.4, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0369", "E.T.S. de Ingenieros en Topografía, Geodesia y Cartografía", "Ingeniería Geomática - Ingeniería de las Tecnologías de la Información Geoespacial (Campus Sur)", 0, 1, [null, null, 5.0, 7.177], 5.0, "315", "5", "-----2-1-2-112--1------1-2-"],
+["UPM", "0324", "E.T.S. de Ingenieros Informáticos", "Ingeniería Informática", 0, 0, [10.716, 10.686, 10.311, 10.175], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0365", "E.T.S. de Ingenieros Informáticos", "Ingeniería Informática - Administración y Dirección de Empresas", 0, 1, [12.176, 11.955, 11.809, 11.589], 5.0, "360", "5", "----1211-2-122-111--1--1-21"],
+["UPM", "0326", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería Mecánica", 0, 0, [11.753, 11.867, 11.875, 11.867], 7.84, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0327", "E.T.S. de Ingenieros Industriales", "Ingeniería Química (Castellana)", 0, 0, [11.686, 11.594, 11.749, 11.707], 7.47, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0328", "E.T.S. de Ingeniería y Diseño Industrial", "Ingeniería Química (Embajadores)", 0, 0, [10.631, 10.744, 11.053, 10.883], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0329", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería Telemática", 0, 0, [9.089, 8.917, 8.902, 8.54], 6.53, "240", "4", "-----2---2---2--1------1-2-"],
+["UPM", "0341", "E.T.S. de Ingenieros de Telecomunicación", "Ingeniería y Sistemas de Datos (Campus Moncloa)", 0, 0, [11.847, 11.709, 11.41, 11.128], 9.39, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0359", "E.T.S. de Ingeniería y Sistemas de Telecomunicación", "Ingeniería y Sistemas de Datos - Ingeniería Telemática (Campus Sur)", 0, 1, [null, null, 8.628, 8.828], 5.0, "357", "5", "-----2-1-2-112--1------1-2-"],
+["UPM", "0389", "E.T.S. de Ingeniería Aeronáutica y del Espacio", "Ingeniero/a Aeronáutico/a (PARS)", 0, 0, [null, 13.007, 13.178, 13.411], 7.44, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0378", "E.T.S. de Ingeniería Agronómica, Alimentaria y de Biosistemas", "Ingeniero/a Agrónomo/a (PARS)", 0, 0, [8.847, 10.723, 11.203, 10.814], 5.0, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0388", "E.T.S. de Ingenieros de Telecomunicación", "Ingeniero/a Biomédico/a (PARS)", 0, 0, [12.7, 13.048, 13.184, 13.15], 8.45, "240", "4", "-----2-2-2-112--1------2-2-"],
+["UPM", "0375", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniero/a de Caminos, Canales y Puertos (PARS)", 0, 0, [10.568, 11.335, 11.614, 11.961], 6.4, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0385", "E.T.S. de Ingenieros de Caminos, Canales y Puertos", "Ingeniero/a de Materiales (PARS)", 0, 0, [8.42, 9.018, 10.113, 10.728], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0380", "E.T.S. de Ingenieros de Minas y Energía", "Ingeniero/a de Minas (PARS)", 0, 0, [7.672, 8.795, 10.103, 10.388], 7.24, "240", "4", "-----2-1-2-112--2------2-2-"],
+["UPM", "0371", "E.T.S. de Ingeniería de Montes, Forestal y del Medio Natural", "Ingeniero/a de Montes (PARS)", 0, 0, [6.459, 6.57, 8.603, 8.739], 5.0, "240", "4", "-----2-2-2-112--2------2-2-"],
+["UPM", "0377", "E.T.S. de Ingenieros de Telecomunicación", "Ingeniero/a de Telecomunicación (PARS)", 0, 0, [11.256, 12.025, 11.688, 11.686], 5.0, "240", "4", "-----2---2---2--1------1-2-"],
+["UPM", "0372", "E.T.S. de Ingeniería de Sistemas Informáticos", "Ingeniero/a del Software (PARS)", 0, 0, [11.006, 11.577, 11.675, 11.533], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0373", "E.T.S. de Ingeniería de Sistemas Informáticos", "Ingeniero/a en Sistemas Informáticos Distribuidos y Embebidos (PARS)", 0, 0, [5.0, 8.684, 9.114, 8.728], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0386", "E.T.S. de Ingenieros Industriales", "Ingeniero/a Industrial (PARS)", 0, 0, [13.201, 13.237, 13.328, 13.525], 7.42, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0376", "E.T.S. de Ingenieros Informáticos", "Ingeniero/a Informática (PARS)", 0, 0, [11.829, 11.832, 11.675, 11.425], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0387", "E.T.S. de Ingenieros Navales", "Ingeniero/a Naval y Oceánica (PARS)", 0, 0, [10.469, 11.781, 11.886, 11.978], 7.16, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UPM", "0368", "Centro Superior de Diseño de Moda", "Interuniversitario en Diseño de Moda (UPM) y Comercio (UCM) Campus Sur/ Madrid", -1, 2, [5.0, 5.0, 5.0, 5.0], 5.0, "344", "5", "-2-21221-2222222112-2-121-2"],
+["UPM", "0345", "Escuela Politécnica de Enseñanza Superior", "Matemáticas", 1, 0, [12.652, 12.514, 12.085, 12.085], 7.32, "240", "4", "-----2-2-2---2--2------2---"],
+["UPM", "0331", "E.T.S. de Ingenieros Informáticos", "Matemáticas e Informática", 0, 0, [12.535, 12.358, 11.714, 11.507], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0335", "E.T.S. de Ingeniería de Sistemas Informáticos", "Sistemas de Información", 0, 0, [9.0, 9.714, 9.25, 9.08], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UPM", "0332", "E.T.S. de Ingeniería de Sistemas Informáticos", "Tecnologías para la Sociedad de la Información", 0, 0, [8.714, 9.151, 8.75, 8.19], 6.4, "240", "4", "-----2-1-2-112--1------1-2-"],
+["URJC", null, null, "Administración y Dirección de Empresas (a distancia) (Vicálvaro)", 3, 0, [null, null, null, 8.14], 8.22, "240", "4", "----1221----22-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (a distancia) (Vicálvaro) - Ciencia, Gestión e Ingeniería de Servicios (presencial) (Madrid)", -1, 1, [null, null, null, 8.2], 5.0, "348", "5", "-1--1221-1-122-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (Fuenlabrada)", 3, 0, [null, null, null, 8.714], 5.0, "240", "4", "----1221----22-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (inglés) (Vicálvaro)", 3, 0, [null, null, null, 8.925], 7.77, "240", "4", "----1221----22-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (Móstoles)", 3, 0, [null, null, null, 8.838], 6.97, "240", "4", "----1221----22-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (presencial) - Ciencia, Gestión e Ingeniería de Servicios (semipresencial) (Vicálvaro)", -1, 1, [null, null, null, 10.239], 5.0, "348", "5", "-1--1221-1-122-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas (Vicálvaro)", 3, 0, [null, null, null, 8.45], 6.32, "240", "4", "----1221----22-2112-1--1--1"],
+["URJC", null, null, "Administración y Dirección de Empresas - Derecho (Fuenlabrada)", -1, 1, [null, null, null, 7.636], 5.0, "348", "5", "----1221----22-2112-1--1--2"],
+["URJC", null, null, "Administración y Dirección de Empresas - Derecho (Madrid)", -1, 1, [null, null, null, 8.536], 5.0, "348", "5", "----1221----22-2112-1--1--2"],
+["URJC", null, null, "Administración y Dirección de Empresas - Derecho (Móstoles)", -1, 1, [null, null, null, 8.461], 7.59, "348", "5", "----1221----22-2112-1--1--2"],
+["URJC", null, null, "Administración y Dirección de Empresas - Derecho (Vicálvaro)", -1, 1, [null, null, null, 9.289], 5.0, "348", "5", "----1221----22-2112-1--1--2"],
+["URJC", null, null, "Administración y Dirección de Empresas - Marketing (Vicálvaro)", -1, 1, [null, null, null, 12.014], 5.0, "304,5", "5", "----1221----22-2112-1--1--2"],
+["URJC", null, null, "Artes Visuales y Danza (Fuenlabrada)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", null],
+["URJC", null, null, "Bellas Artes (Aranjuez)", 4, 0, [null, null, null, 8.564], 9.09, "240", "4", "-2-22-1--2221-21-22-2-2-2-2"],
+["URJC", null, null, "Bellas Artes (presencial) (Aranjuez) - Turismo (semipresencial) (Vicálvaro)", -1, 1, [null, null, null, 8.461], 6.33, "393", "6", "-2-22221-2222122122-2-212-2"],
+["URJC", null, null, "Bellas Artes - Diseño Integral y Gestión de la Imagen (Aranjuez)", -1, 1, [null, null, null, 11.685], 7.27, "345", "5", "-2-2211--2221-21-22-2-2-2-2"],
+["URJC", null, null, "Biología (Móstoles)", 1, 0, [null, null, null, 9.95], 7.57, "240", "4", "--1--212-----2--2------2---"],
+["URJC", null, null, "Ciencia e Ingeniería de Datos (Fuenlabrada)", 0, 0, [null, null, null, 10.403], 5.0, "240", "4", "-----2---1-112---------1-2-"],
+["URJC", null, null, "Ciencia Política y Gestión Pública (Fuenlabrada)", 3, 0, [null, null, null, 7.441], 5.0, "240", "4", "----222-----2--2-22-1-1---2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública (Vicálvaro)", 3, 0, [null, null, null, 7.427], 6.22, "240", "4", "----222-----2--2-22-1-1---2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Derecho (Fuenlabrada)", -1, 1, [null, null, null, 8.903], 7.72, "315", "5", "----2221----2--2-22-1-11--2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Derecho (Vicálvaro)", -1, 1, [null, null, null, 9.937], 5.0, "315", "5", "----2221----2--2-22-1-11--2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Economía (Fuenlabrada)", -1, 1, [null, null, null, 8.189], 5.0, "318", "5", "----2221----22-2-22-1-12--2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Economía (Vicálvaro)", -1, 1, [null, null, null, 10.025], 6.87, "318", "5", "----2221----22-2-22-1-12--2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Periodismo (Fuenlabrada)", -1, 1, [null, null, null, 8.775], 5.0, "336", "5", "-121222--1122-221221212-2-2"],
+["URJC", null, null, "Ciencia Política y Gestión Pública - Periodismo (Vicálvaro)", -1, 1, [null, null, null, 10.164], 5.0, "336", "5", "-121222--1122-221221212-2-2"],
+["URJC", null, null, "Ciencia y Tecnología de los Alimentos (Móstoles)", 1, 0, [null, null, null, 8.149], 6.6, "240", "4", "--2--2-2-1---2--2------2-1-"],
+["URJC", null, null, "Ciencia y Tecnología del Agua (Móstoles)", 1, 0, [null, null, null, 5.0], 5.0, "240", "4", "--2--212-----2--2------2-1-"],
+["URJC", null, null, "Ciencia, Gestión e Ingeniería de Servicios (Madrid)", 3, 0, [null, null, null, 8.08], 5.0, "240", "4", "-1--1221-1-122-2112-1--1--1"],
+["URJC", null, null, "Ciencia, Gestión e Ingeniería de Servicios (semipresencial) (Vicálvaro)", 3, 0, [null, null, null, 7.2], 8.44, "240", "4", "-1--1221-1-122-2112-1--1--1"],
+["URJC", null, null, "Ciencia, Gestión e Ingeniería de Servicios (semipresencial) - Marketing (presencial) (Vicálvaro)", -1, 1, [null, null, null, 10.161], 5.0, "328,5", "5", "-1--1221-1-122-2112-1--1--2"],
+["URJC", null, null, "Ciencia, Gestión e Ingeniería de Servicios (semipresencial) - Turismo (presencial) (Vicálvaro)", -1, 1, [null, null, null, 6.431], 5.0, "339", "5", "-1--2221-1-12222112-2-11--2"],
+["URJC", null, null, "Ciencias Ambientales (Móstoles)", 1, 0, [null, null, null, 7.553], 6.75, "240", "4", "--2--222-1---2--2------2---"],
+["URJC", null, null, "Ciencias de la Actividad Física y del Deporte (Fuenlabrada)", 3, 0, [null, null, null, 10.625], 8.55, "240", "4", "122-1222----22-2-1211--2--1"],
+["URJC", null, null, "Ciencias Experimentales (Móstoles)", 1, 0, [null, null, null, 7.661], 5.0, "240", "4", "--2--2-2-1---2--2------2---"],
+["URJC", null, null, "Comunicación Audiovisual (Fuenlabrada)", 3, 0, [null, null, null, 8.56], 7.03, "240", "4", "-2-2222--1222-22-121212-212"],
+["URJC", null, null, "Comunicación Audiovisual (Vicálvaro)", 3, 0, [null, null, null, 9.115], 7.4, "240", "4", "-2-2222--1222-22-121212-212"],
+["URJC", null, null, "Comunicación Audiovisual - Administración y Dirección de Empresas (Fuenlabrada)", -1, 1, [null, null, null, 8.339], 5.0, "339", "5", "-2-22221-122222211212121212"],
+["URJC", null, null, "Comunicación Digital (Fuenlabrada)", 3, 0, [null, null, null, 9.138], 5.0, "240", "4", "-2-2222--1222-22-121212-212"],
+["URJC", null, null, "Contabilidad y Finanzas (a distancia) (Vicálvaro)", 3, 0, [null, null, null, 7.92], 7.77, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Contabilidad y Finanzas (Fuenlabrada)", 3, 0, [null, null, null, 8.3], 6.65, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Contabilidad y Finanzas (Móstoles)", 3, 0, [null, null, null, 8.288], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Contabilidad y Finanzas (Vicálvaro)", 3, 0, [null, null, null, 9.039], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Contabilidad y Finanzas - Relaciones Laborales y Recursos Humanos (Vicálvaro)", -1, 1, [null, null, null, 9.389], 5.0, "336", "5", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Criminología (Alcorcón)", 3, 0, [null, null, null, 10.087], 8.6, "240", "4", "--2-2222----2--2-12-1--1--2"],
+["URJC", null, null, "Criminología (Vicálvaro)", 3, 0, [null, null, null, 10.461], 8.0, "240", "4", "--2-2222----2--2-12-1--1--2"],
+["URJC", null, null, "Criminología - Derecho (Vicálvaro)", -1, 1, [null, null, null, 12.433], 6.46, "327", "5", "--2-2222----2--2-12-1--1--2"],
+["URJC", null, null, "Criminología - Ingeniería Informática (Vicálvaro)", -1, 1, [null, null, null, 10.867], 7.45, "381", "5", "--2-2222-1--22-2112-1--1-22"],
+["URJC", null, null, "Criminología - Psicología (Alcorcón)", -1, 1, [null, null, null, 12.314], 9.33, "360", "5", "--2-2222----21-2112-1--1--2"],
+["URJC", null, null, "Criminología - Trabajo Social (Alcorcón)", -1, 1, [null, null, null, 10.5], 7.78, "348", "5", "--2-2222----21-2-12-1-11--2"],
+["URJC", null, null, "Derecho (Fuenlabrada)", 3, 0, [null, null, null, 9.166], 7.9, "240", "4", "----2121----2--2-12-1--1--2"],
+["URJC", null, null, "Derecho (Móstoles)", 3, 0, [null, null, null, 8.889], 8.44, "240", "4", "----2121----2--2-12-1--1--2"],
+["URJC", null, null, "Derecho (semipresencial) (Vicálvaro)", 3, 0, [null, null, null, 8.111], 9.09, "240", "4", "----2121----2--2-12-1--1--2"],
+["URJC", null, null, "Derecho (semipresencial) - Relaciones Internacionales (inglés) (presencial) (Vicálvaro)", -1, 1, [null, null, null, 12.33], 6.38, "362", "5", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Derecho (Vicálvaro)", 3, 0, [null, null, null, 8.723], 8.59, "240", "4", "----2121----2--2-12-1--1--2"],
+["URJC", null, null, "Derecho - Periodismo (Vicálvaro)", -1, 1, [null, null, null, 11.378], 5.0, "354", "5", "-1212121-1122-22122121212-2"],
+["URJC", null, null, "Derecho - Relaciones Internacionales (Fuenlabrada)", -1, 1, [null, null, null, 13.161], 7.79, "362", "5", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Derecho - Relaciones Internacionales (inglés) (Vicálvaro)", -1, 1, [null, null, null, 13.061], 5.0, "362", "5", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Derecho - Relaciones Laborales y Recursos Humanos (Vicálvaro)", -1, 1, [null, null, null, 9.025], 7.66, "303", "5", "----2221----21-2-12-1--1--2"],
+["URJC", null, null, "Dirección y Gestión de Empresas en el Ámbito Digital (Vicálvaro)", 3, 0, [null, null, null, 9.903], 5.0, "240", "4", "-1--1221-1-122-2112-1--1--1"],
+["URJC", null, null, "Diseño Integral y Gestión de la Imagen (Aranjuez)", 4, 0, [null, null, null, 9.846], 7.98, "240", "4", "-2-2211--2221-21-22-2-1-1-2"],
+["URJC", null, null, "Diseño Integral y Gestión de la Imagen (Madrid)", 4, 0, [null, null, null, 11.5], 5.0, "240", "4", "-2-2211--2221-21-22-2-1-1-2"],
+["URJC", null, null, "Diseño y Desarrollo de Videojuegos (Madrid)", 0, 0, [null, null, null, 9.489], 7.11, "240", "4", "-----2-1-2-2-2--1------1-2-"],
+["URJC", null, null, "Diseño y Desarrollo de Videojuegos (Móstoles)", 0, 0, [null, null, null, 9.404], 6.32, "240", "4", "-----2-1-2-2-2--1------1-2-"],
+["URJC", null, null, "Diseño y Desarrollo de Videojuegos - Ingeniería de Computadores (Móstoles)", -1, 1, [null, null, null, 11.102], 6.7, "303", "5", "-----2-1-2-2-2--1------1-2-"],
+["URJC", null, null, "Diseño y Gestión de Moda (Aranjuez)", 4, 0, [null, null, null, 10.018], 8.31, "240", "4", "-2-2211--2221-21-22-2-1-1-2"],
+["URJC", null, null, "Diseño y Gestión de Moda - Bellas Artes (Aranjuez)", -1, 1, [null, null, null, 11.503], 6.24, "345", "5", "-2-2211--2221-21-22-2-2-2-2"],
+["URJC", null, null, "Diseño y Gestión de Moda - Diseño Integral y Gestión de la Imagen (Aranjuez)", -1, 1, [null, null, null, 10.69], 8.31, "342", "5", "-2-2211--2221-21-22-2-1-1-2"],
+["URJC", null, null, "Economía (Fuenlabrada)", 3, 0, [null, null, null, 9.078], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía (inglés) (Madrid)", 3, 0, [null, null, null, 6.989], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía (Móstoles)", 3, 0, [null, null, null, 8.365], 7.61, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía (Vicálvaro)", 3, 0, [null, null, null, 8.475], 6.18, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía - Derecho (Fuenlabrada)", -1, 1, [null, null, null, 10.475], 5.0, "339", "5", "----2221----22-2-12-1--2--2"],
+["URJC", null, null, "Economía - Derecho (Móstoles)", -1, 1, [null, null, null, 11.078], 5.0, "339", "5", "----2221----22-2-12-1--2--2"],
+["URJC", null, null, "Economía - Derecho (Vicálvaro)", -1, 1, [null, null, null, 11.728], 5.0, "339", "5", "----2221----22-2-12-1--2--2"],
+["URJC", null, null, "Economía - Historia (Fuenlabrada)", -1, 1, [null, null, null, 6.689], 5.0, "355,5", "5", "-1--2221---12222-22-2-12--2"],
+["URJC", null, null, "Economía - Matemáticas (Móstoles)", -1, 1, [null, null, null, 12.489], 5.0, "366", "5", "----1221-1--22-2112-1--2-21"],
+["URJC", null, null, "Economía - Periodismo (Vicálvaro)", -1, 1, [null, null, null, 10.403], 5.0, "334,5", "5", "-1212221-1122222122121222-2"],
+["URJC", null, null, "Economía Financiera y Actuarial (Móstoles)", 3, 0, [null, null, null, 8.805], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía Financiera y Actuarial (Vicálvaro)", 3, 0, [null, null, null, 9.564], 5.0, "240", "4", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía Financiera y Actuarial - Administración y Dirección de Empresas (Móstoles)", -1, 1, [null, null, null, 11.153], 5.0, "288", "5", "----1221----22-2112-1--2--1"],
+["URJC", null, null, "Economía Financiera y Actuarial - Administración y Dirección de Empresas (Vicávaro)", -1, 1, [null, null, null, 11.287], 5.0, "288", "5", "----1221----22-2112-1--2--1"],
+["URJC", null, null, "Economía Financiera y Actuarial - Economía (Móstoles)", -1, 1, [null, null, null, 10.036], 5.0, "288", "5", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Economía Financiera y Actuarial - Economía (Vicálvaro)", -1, 1, [null, null, null, 10.378], 5.0, "288", "5", "----1221----22-2-12-1--2--1"],
+["URJC", null, null, "Educación Infantil (Fuenlabrada)", 3, 0, [null, null, null, 9.14], 7.84, "240", "4", "222222222222222222222222222"],
+["URJC", null, null, "Educación Infantil (inglés) (Vicálvaro)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "222222222222222222222222222"],
+["URJC", null, null, "Educación Infantil (Móstoles)", 3, 0, [null, null, null, 8.91], 7.7, "240", "4", "222222222222222222222222222"],
+["URJC", null, null, "Educación Infantil (semipresencial) (Vicálvaro)", 3, 0, [null, null, null, 8.67], 9.53, "240", "4", "222222222222222222222222222"],
+["URJC", null, null, "Educación Infantil - Educación Primaria (Fuenlabrada)", -1, 1, [null, null, null, 11.961], 8.71, "316,5", "5", "222222222222222222222222222"],
+["URJC", null, null, "Educación Primaria (semipresencial) (Vicálvaro)", 3, 0, [null, null, null, 9.014], 9.48, "240", "4", null],
+["URJC", null, null, "Educación Primaria y Educación Primaria mención Educación Física (Fuenlabrada)", 3, 0, [null, null, null, 9.564], 8.51, "240", "4", null],
+["URJC", null, null, "Educación Primaria y Educación Primaria mención Educación Musical, Educación Física, Ciencias y Matemáticas (Móstoles)", 3, 0, [null, null, null, 9.75], 8.62, "240", "4", null],
+["URJC", null, null, "Educación Primaria y Educación Primaria mención Lengua Extranjera inglés (Vicálvaro)", 3, 0, [null, null, null, 8.524], 8.48, "240", "4", null],
+["URJC", null, null, "Enfermería (Alcorcón)", 2, 0, [null, null, null, 11.675], 9.47, "240", "4", "-----1-2-----1---------2---"],
+["URJC", null, null, "Farmacia (Alcorcón)", 2, 0, [null, null, null, 11.778], 8.84, "300", "5", "-----2-2-----1---------2---"],
+["URJC", null, null, "Filosofía (Fuenlabrada)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2-2----11-22-22-2-2---2"],
+["URJC", null, null, "Filosofía - Ciencia Política y Gestión Pública (Fuenlabrada)", -1, 1, [null, null, null, 5.0], 5.0, "384", "6", "-1--222----12-22-22-2-2---2"],
+["URJC", null, null, "Filosofía - Economía (Fuenlabrada)", -1, 1, [null, null, null, 5.0], 5.0, "378", "6", "-1--2221---12222-22-2-22--2"],
+["URJC", null, null, "Fisioterapia (Alcorcón)", 2, 0, [null, null, null, 10.954], 9.03, "240", "4", "-----2-2-----2---------2---"],
+["URJC", null, null, "Fundamentos de la Arquitectura (Fuenlabrada)", 0, 0, [null, null, null, 10.428], 8.22, "300", "5", "-----2---2-112-12------2-1-"],
+["URJC", null, null, "Fundamentos de la Arquitectura - Paisajismo (Fuenlabrada)", -1, 1, [null, null, null, 10.185], 8.61, "414", "6", null],
+["URJC", null, null, "Gastronomía (Aranjuez)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-12-2222-1-12222212-2-12-12"],
+["URJC", null, null, "Historia (Fuenlabrada)", 4, 0, [null, null, null, 6.1], 9.33, "240", "4", "-1--2-1----11-22-22-2-1---2"],
+["URJC", null, null, "Historia (presencial) (Fuenlabrada) - Turismo (semipresencial) (Vicálvaro)", -1, 1, [null, null, null, 5.0], 5.0, "366", "5", "-1--2221-1-12122122-2-11--2"],
+["URJC", null, null, "Historia - Turismo (Fuenlabrada)", -1, 1, [null, null, null, 5.0], 5.0, "366", "5", "-1--2221-1-12122122-2-11--2"],
+["URJC", null, null, "Historia de Arte y Patrimonio Cultural (Aranjuez)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--211--2221-22-2222-2---2"],
+["URJC", null, null, "Ineniería de la Energía - Ingeniería Ambiental (Móstoles)", -1, 1, [null, null, null, 10.373], 5.0, "303", "5", "-----212-2-112-12------2-2-"],
+["URJC", null, null, "Ingeniería Aeroespacial (Fuenlabrada)", 0, 0, [null, null, null, 12.114], 9.07, "240", "4", "-----2---2---2--1------2-2-"],
+["URJC", null, null, "Ingeniería Ambiental (Móstoles)", 0, 0, [null, null, null, 7.848], 5.0, "240", "4", "-----212-1-112-12------2-2-"],
+["URJC", null, null, "Ingeniería Ambiental - Ingeniería en Organización Industrial (Móstoles)", -1, 1, [null, null, null, 9.903], 5.0, "318", "5", "-----212-2-122-12------2-2-"],
+["URJC", null, null, "Ingeniería Biomédica (Fuenlabrada)", 0, 0, [null, null, null, 12.339], 9.38, "240", "4", "-----2-2-1-112---------2-2-"],
+["URJC", null, null, "Ingeniería Biomédica (inglés) (Fuenlabrada)", 0, 0, [null, null, null, 12.139], 9.27, "240", "4", "-----2-2-1-112---------2-2-"],
+["URJC", null, null, "Ingeniería de Computadores (Móstoles)", 0, 0, [null, null, null, 9.186], 5.0, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería de la Ciberseguridad (Móstoles)", 0, 0, [null, null, null, 10.803], 7.43, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería de la Energía (Móstoles)", 0, 0, [null, null, null, 10.04], 5.0, "240", "4", "-----2-2-2-112-12------2-2-"],
+["URJC", null, null, "Ingeniería de la Energía - Ingeniería en Organización Industrial (Móstoles)", -1, 1, [null, null, null, 10.814], 5.0, "312", "5", "-----212-2-122-12------2-2-"],
+["URJC", null, null, "Ingeniería de Materiales - Ingeniería de la Energía (Móstoles)", -1, 1, [null, null, null, 9.914], 5.0, "313,5", "5", "-----2-2-2-112-12------2-2-"],
+["URJC", null, null, "Ingeniería de Materiales - Ingeniería en Organización Industrial (Móstoles)", -1, 1, [null, null, null, 10.478], 5.0, "309", "5", "-----212-1-122-12------2-2-"],
+["URJC", null, null, "Ingeniería de Robótica Software (Fuenlabrada)", 0, 0, [null, null, null, 9.814], 5.0, "240", "4", "-----2---2-112---------2-2-"],
+["URJC", null, null, "Ingeniería de Tecnologías Industriales (Móstoles)", 0, 0, [null, null, null, 10.952], 5.0, "240", "4", "-----2---2-112--1------2-2-"],
+["URJC", null, null, "Ingeniería del Software (Móstoles)", 0, 0, [null, null, null, 9.986], 5.0, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería del Software - Matemáticas (Móstoles)", -1, 1, [null, null, null, 12.604], 5.0, "309", "5", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería Electrónica Industrial y Automática (Móstoles)", 0, 0, [null, null, null, 10.075], 5.0, "240", "4", "-----2---2-112---------2-2-"],
+["URJC", null, null, "Ingeniería en Materiales (Móstoles)", 0, 0, [null, null, null, 9.525], 5.0, "240", "4", "-----2-2-1-112-12------2-2-"],
+["URJC", null, null, "Ingeniería en Organización Industrial (Móstoles)", 0, 0, [null, null, null, 11.257], 5.0, "240", "4", "-----21--1-122---------2-2-"],
+["URJC", null, null, "Ingeniería en Organización Industrial (Vicálvaro)", 0, 0, [null, null, null, 10.95], 8.47, "240", "4", "-----21--1-122---------2-2-"],
+["URJC", null, null, "Ingeniería en Tecnología de Telecomunicación (mención Sistema de Telecomunicación) - Ingeniería Aeroespacial (mención en Aeronavegación) (Fuenlabrada)", -1, 1, [null, null, null, 12.089], 7.09, "360", "6", "-----2---2---2--1------2-2-"],
+["URJC", null, null, "Ingeniería en Tecnologías de la Telecomunicación (Fuenlabrada)", 0, 0, [null, null, null, 8.15], 5.0, "240", "4", "-----2---1---2---------1-2-"],
+["URJC", null, null, "Ingeniería Informática (Móstoles)", 0, 0, [null, null, null, 10.503], 6.12, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería Informática (presencial) - Administración y Dirección de Empresas (a distancia) (Vicálvaro)", -1, 1, [null, null, null, 10.589], 5.0, "360", "5", "----1221-1-122-2112-1--1-21"],
+["URJC", null, null, "Ingeniería Informática (Vicálvaro)", 0, 0, [null, null, null, 10.036], 5.0, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Ingeniería Informática - Administración y Dirección de Empresas (Móstoles)", -1, 1, [null, null, null, 11.678], 5.0, "360", "5", "----1221-1-122-2112-1--1-21"],
+["URJC", null, null, "Ingeniería Informática - Ingeniería de Computadores (Móstoles)", -1, 1, [null, null, null, 9.849], 5.0, "270", "4", "-----2-1-1-1-2--1------1-2-"],
+["URJC", null, null, "Ingeniería Informática - Ingeniería del Software (Móstoles)", -1, 1, [null, null, null, 11.323], 5.0, "270", "4", "-----2-1-1-1-2--1------1-2-"],
+["URJC", null, null, "Ingeniería Informática - Matemáticas (Móstoles)", -1, 1, [null, null, null, 13.089], 7.12, "324", "4", "-----2-1-1-1-2--1------1-2-"],
+["URJC", null, null, "Ingeniería Mecánica (Móstoles)", 0, 0, [null, null, null, 11.378], 8.09, "240", "4", "-----2---2-112---------2-2-"],
+["URJC", null, null, "Ingeniería Química (Móstoles)", 0, 0, [null, null, null, 10.481], 6.63, "240", "4", "-----2-1-2-112--1------2-2-"],
+["URJC", null, null, "Ingeniería Química - Ingeniería Ambiental (Móstoles)", -1, 1, [null, null, null, 10.439], 5.0, "300", "5", "-----212-2-112-12------2-2-"],
+["URJC", null, null, "Ingeniería Química - Ingeniería de la Energía (Móstoles)", -1, 1, [null, null, null, 10.825], 5.0, "303", "5", null],
+["URJC", null, null, "Ingeniería Química - Ingeniería en Organización Industrial (Móstoles)", -1, 1, [null, null, null, 11.103], 5.0, "312", "5", "-----211-2-122--1------2-2-"],
+["URJC", null, null, "Inteligencia Artificial (Móstoles)", 0, 0, [null, null, null, 10.428], 7.46, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Inteligencia, Seguridad y Diplomacia (Madrid-Quintana)", 3, 0, [null, null, null, 7.303], 6.14, "240", "4", "--1-1-2-----2-22-12-2-1---2"],
+["URJC", null, null, "Lengua de Signos Española y Comunidad Sorda (Alcorcón)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--2121-1-21121122-2-11--2"],
+["URJC", null, null, "Lengua de Signos Española y Comunidad Sorda (Madrid - Quintana)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--2121-1-21121122-2-11--2"],
+["URJC", null, null, "Lengua y Literatura Española (Fuenlabrada)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--2-1----11-22-22-221---2"],
+["URJC", null, null, "Marketing (Aranjuez)", 3, 0, [null, null, null, 8.33], 5.0, "240", "4", "----1221----22-2-12-1--1--2"],
+["URJC", null, null, "Marketing (Fuenlabrada)", 3, 0, [null, null, null, 10.199], 5.61, "240", "4", "----1221----22-2-12-1--1--2"],
+["URJC", null, null, "Marketing (inglés) (Vicálvaro)", 3, 0, [null, null, null, 9.458], 5.0, "240", "4", "----1221----22-2-12-1--1--2"],
+["URJC", null, null, "Marketing (Móstoles)", 3, 0, [null, null, null, 9.728], 5.0, "240", "4", "----1221----22-2-12-1--1--2"],
+["URJC", null, null, "Marketing (Vicálvaro)", 3, 0, [null, null, null, 10.624], 6.8, "240", "4", "----1221----22-2-12-1--1--2"],
+["URJC", null, null, "Matemáticas (Móstoles)", 1, 0, [null, null, null, 11.753], 7.49, "240", "4", "-----2-1-1---2--1------1-2-"],
+["URJC", null, null, "Medicina (Alcorcón)", 2, 0, [null, null, null, 12.932], 9.87, "360", "6", "-----2-2-----2---------2---"],
+["URJC", null, null, "Nanociencia y Nanotecnología (Móstoles)", 1, 0, [null, null, null, 10.214], 6.37, "240", "4", "-----212-----2--1------2---"],
+["URJC", null, null, "Odontología (Alcorcón)", 2, 0, [null, null, null, 12.59], 9.55, "300", "5", "-----2-2-----2---------2---"],
+["URJC", null, null, "Paisajismo (Fuenlabrada)", 0, 0, [null, null, null, 6.93], 7.27, "240", "4", "-----2-2-2-1-2-12------2-1-"],
+["URJC", null, null, "Periodismo (Fuenlabrada)", 3, 0, [null, null, null, 7.93], 5.0, "240", "4", "-1212-2--1122-221221212-2-2"],
+["URJC", null, null, "Periodismo (semipresencial) (Fuenlabrada)", 3, 0, [null, null, null, 7.0], 9.07, "240", "4", "-1212-2--1122-221221212-2-2"],
+["URJC", null, null, "Periodismo (Vicálvaro)", 3, 0, [null, null, null, 7.352], 6.79, "240", "4", "-1212-2--1122-221221212-2-2"],
+["URJC", null, null, "Periodismo - Comunicación Audiovisual (Fuenlabrada)", -1, 1, [null, null, null, 8.936], 5.0, "294", "5", "-222222--1222-221221212-212"],
+["URJC", null, null, "Periodismo - Comunicación Audiovisual (Vicálvaro)", -1, 1, [null, null, null, 8.553], 7.36, "294", "5", "-222222--1222-221221212-212"],
+["URJC", null, null, "Protocolo, Organización de Eventos y Comunicación Corporativa (inglés) (Madrid)", 3, 0, [null, null, null, 7.77], 5.0, "240", "4", "12122221212221221222222-2-2"],
+["URJC", null, null, "Protocolo, Organización de Eventos y Comunicación Corporativa (Vicálvaro)", 3, 0, [null, null, null, 9.625], 6.34, "240", "4", "12122221212221221222222-2-2"],
+["URJC", null, null, "Psicología (Alcorcón)", 2, 0, [null, null, null, 10.989], 8.86, "240", "4", "--2--222----21--1-2----1---"],
+["URJC", null, null, "Publicidad y Relaciones Públicas (Fuenlabrada)", 3, 0, [null, null, null, 10.311], 5.0, "240", "4", "-222222--1222-22-121212-212"],
+["URJC", null, null, "Publicidad y Relaciones Públicas (semipresencial) (Fuenlabrada)", 3, 0, [null, null, null, 8.889], 8.23, "240", "4", "-222222--1222-22-121212-212"],
+["URJC", null, null, "Publicidad y Relaciones Públicas (Vicálvaro)", 3, 0, [null, null, null, 10.064], 6.76, "240", "4", "-222222--1222-22-121212-212"],
+["URJC", null, null, "Publicidad y Relaciones Públicas - Administración y Dirección de Empresas (Fuenlabrada)", -1, 1, [null, null, null, 10.046], 5.0, "322,5", "5", "-2222221-122222211212121212"],
+["URJC", null, null, "Publicidad y Relaciones Públicas - Marketing (Fuenlabrada)", -1, 1, [null, null, null, 12.329], 5.0, "330", "5", "-2222221-1222222-1212121212"],
+["URJC", null, null, "Relaciones Internacionales (Aranjuez)", 3, 0, [null, null, null, 10.116], 5.0, "240", "4", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Relaciones Internacionales (Fuenlabrada)", 3, 0, [null, null, null, 10.992], 5.0, "240", "4", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Relaciones Internacionales (inglés) (Vicálvaro)", 3, 0, [null, null, null, 10.632], 6.78, "240", "4", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Relaciones Internacionales (inglés) - Protocolo, Organización de Eventos y Comunicación Corporativa (Vicálvaro)", -1, 1, [null, null, null, 12.369], 5.0, "357", "5", null],
+["URJC", null, null, "Relaciones Internacionales - Ciencias Políticas y Gestión Pública (Fuenlabrada)", -1, 1, [null, null, null, 12.267], 5.0, "330", "5", "----2221----2122-22-2-11--2"],
+["URJC", null, null, "Relaciones Internacionales - Economía (Fuenlabrada)", -1, 1, [null, null, null, 11.492], 6.86, "359", "5", "----2221----2222-22-2-12--2"],
+["URJC", null, null, "Relaciones Internacionales - Periodismo (Fuenlabrada)", -1, 1, [null, null, null, 12.216], 6.8, "330", "5", "-1212221-1122122122121212-2"],
+["URJC", null, null, "Relaciones Laborales y Recursos Humanos (Alcorcón)", 3, 0, [null, null, null, 7.54], 8.02, "240", "4", "----122-----21-2-12-1-----1"],
+["URJC", null, null, "Relaciones Laborales y Recursos Humanos (Vicálvaro)", 3, 0, [null, null, null, 7.328], 5.0, "240", "4", "----122-----21-2-12-1-----1"],
+["URJC", null, null, "Relaciones Laborales y Recursos Humanos - Trabajo Social (Alcorcón)", -1, 1, [null, null, null, 8.76], 6.16, "360", "5", "----122-----21-2-12-1-1---1"],
+["URJC", null, null, "Terapia Ocupacional (Alcorcón)", 2, 0, [null, null, null, 9.128], 8.47, "240", "4", "-----212-----2---------2---"],
+["URJC", null, null, "Trabajo Social (Alcorcón)", 3, 0, [null, null, null, 8.71], 7.36, "240", "4", "----122-----21-2-12-1-1---1"],
+["URJC", null, null, "Traducción e Interpretación (Aranjuez)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2-2----12-22-22-221---2"],
+["URJC", null, null, "Traducción e Interpretación (Fuenlabrada)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2-2----12-22-22-221---2"],
+["URJC", null, null, "Turismo (Fuenlabrada)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2221-1-12122112-2-11--2"],
+["URJC", null, null, "Turismo (inglés) (Vicálvaro)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2221-1-12122112-2-11--2"],
+["URJC", null, null, "Turismo (semipresencial) (Vicálvaro)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2221-1-12122112-2-11--2"],
+["URJC", null, null, "Turismo (semipresencial) - Marketing (presencial) (Vicálvaro)", -1, 1, [null, null, null, 9.289], 5.0, "310,5", "5", "-1--2221-1-12222112-2-11--2"],
+["URJC", null, null, "Turismo (Vicálvaro)", 3, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--2221-1-12122112-2-11--2"],
+["URJC", null, null, "Turismo - Administración y Dirección de Empresas (Fuenlabrada)", -1, 1, [null, null, null, 5.0], 5.0, "310,5", "5", "-1--2221-1-12222112-2-11--2"],
+["URJC", null, null, "Turismo - Administración y Dirección de Empresas (Vicálvaro)", -1, 1, [null, null, null, 7.653], 5.0, "310,5", "5", "-1--2221-1-12222112-2-11--2"],
+["URJC", null, null, "Turismo - Marketing (Vicálvaro)", -1, 1, [null, null, null, 10.177], 5.0, "310,5", "5", "-1--2221-1-12222112-2-11--2"],
+["UAH", null, null, "Administración y Dirección de Empresas", 3, 0, [null, null, null, 9.225], 5.0, "240", "4", "-1--1221-1-12222212-1--2--1"],
+["UAH", null, null, "Administración y Dirección de Empresas (Guadalajara)", 3, 0, [null, null, null, 7.882], 5.0, "240", "4", "-1--1221-1-12222212-1--2--1"],
+["UAH", null, null, "Arquitectura Técnica y Edificación (Guadalajara)", 0, 0, [null, null, null, 7.707], 6.7, "240", "4", "-----2---2-212--2---2--1-1-"],
+["UAH", null, null, "Biología", 1, 0, [null, null, null, 9.7], 7.4, "240", "4", "--1--2-2-1---2--2------2---"],
+["UAH", null, null, "Biología Sanitaria", 2, 0, [null, null, null, 11.839], 8.2, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Ciencias Ambientales", 1, 0, [null, null, null, 7.106], 5.0, "240", "4", "--2--222-1---2--2------2---"],
+["UAH", null, null, "Ciencias de la Actividad Física y del Deporte", 2, 0, [null, null, null, 10.325], 7.99, "240", "4", "--2--222----22-2--2----2--1"],
+["UAH", null, null, "Comunicación Audiovisual (Guadalajara)", 3, 0, [null, null, null, 7.89], 7.88, "240", "4", "-2--2221-2-22222122-2-11--2"],
+["UAH", null, null, "Criminalística: Ciencias y Tecnologías Forenses", 1, 0, [null, null, null, 11.636], 8.27, "240", "4", "-----212-1---2--2------2---"],
+["UAH", null, null, "Derecho", 3, 0, [null, null, null, 8.328], 7.52, "240", "4", "-1--2222-1-12122122-2--1--2"],
+["UAH", null, null, "Derecho - Administración y Dirección de Empresas", -1, 1, [null, null, null, 9.516], 6.47, "324", "5", "-1--2222-1-12222222-2--2--2"],
+["UAH", null, null, "Economía", 3, 0, [null, null, null, 7.664], 5.0, "240", "4", "-1--1221-1-12222212-1--2--1"],
+["UAH", null, null, "Economía y Negocios Internacionales", 3, 0, [null, null, null, 11.203], 6.41, "240", "4", "-1--1221-1-12222212-1--2--2"],
+["UAH", null, null, "Economía y Negocios Internacionales (inglés)", 3, 0, [null, null, null, 10.428], 5.0, "240", "4", "-1--1221-1-12222212-1--2--2"],
+["UAH", null, null, "Enfermería", 2, 0, [null, null, null, 11.426], 9.01, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Enfermería (Guadalajara)", 2, 0, [null, null, null, 11.1], 9.18, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Enfermería (Torrejón de Ardoz)", 2, 0, [null, null, null, 11.303], 8.99, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Estudios Hispánicos", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-12-22-22-221---2"],
+["UAH", null, null, "Estudios Ingleses", 4, 0, [null, null, null, 6.864], 7.77, "240", "4", "-2--222--1-12-22-22-221---2"],
+["UAH", null, null, "Estudios Ingleses - Lenguas Modernas y Traducción (inglés)", -1, 1, [null, null, null, 9.334], null, "318", "5", "-2--222--1-22-22-22-221---2"],
+["UAH", null, null, "Farmacia", 2, 0, [null, null, null, 11.22], 8.4, "300", "5", "-----2-2-----2---------2---"],
+["UAH", null, null, "Finanzas", 3, 0, [null, null, null, 7.541], 5.0, "240", "4", "-1--1221-1-12222212-1--2--1"],
+["UAH", null, null, "Física e Instrumentación Espacial", 1, 0, [null, null, null, 11.83], 6.69, "240", "4", "-----2-2-1---2--2------2---"],
+["UAH", null, null, "Fisioterapia", 2, 0, [null, null, null, 10.85], 9.33, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Fisioterapia (Torrejón de Ardoz)", 2, 0, [null, null, null, 10.55], 8.78, "240", "4", "-----2-2-----2---------2---"],
+["UAH", null, null, "Fundamentos de Arquitectura y Urbanismo", 0, 0, [null, null, null, 10.148], 7.12, "330", "5", "-----2---2-212--2---2--1-1-"],
+["UAH", null, null, "Historia", 4, 0, [null, null, null, 5.71], 7.0, "240", "4", "-2--222--1-12-22-22-2-1---2"],
+["UAH", null, null, "Humanidades", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-221212---2"],
+["UAH", null, null, "Humanidades - Magisterio de Educación Primaria", -1, 1, [null, null, null, 9.489], 8.41, "302", "5", "222222222222222222222222222"],
+["UAH", null, null, "Ingeniería de Computadores", 0, 0, [null, null, null, 8.575], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería Electrónica de Comunicaciones - Ingeniería Electrónica y Automática Industrial", -1, 1, [null, null, null, 8.987], 5.0, "315", "5", "-----2---2--12---------2-2-"],
+["UAH", null, null, "Ingeniería en Electrónica de Comunicaciones", 0, 0, [null, null, null, 7.504], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería en Electrónica y Automática Industrial", 0, 0, [null, null, null, 9.976], 5.0, "240", "4", "-----2---2--12---------2-2-"],
+["UAH", null, null, "Ingeniería en Sistemas de Información", 0, 0, [null, null, null, 8.139], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería en Sistemas de Telecomunicación", 0, 0, [null, null, null, 7.8], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería en Tecnologías de Telecomunicación", 0, 0, [null, null, null, 8.003], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería en Tecnologías de Telecomunicación + Máster Universitario en Ingeniería de Telecomunicaciones", 0, 0, [null, null, null, 8.553], 5.0, "240", "4", null],
+["UAH", null, null, "Ingeniería en Tecnologías Industriales", 0, 0, [null, null, null, 11.0], 5.0, "240", "4", "-----2---2--12---------2-2-"],
+["UAH", null, null, "Ingeniería en Tecnologías Industriales + Máster Universitario en Ingeniería Industrial", 0, 0, [null, null, null, 11.614], 5.0, "240", "4", null],
+["UAH", null, null, "Ingeniería Informática", 0, 0, [null, null, null, 10.7], 5.0, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Ingeniería Informática - Administración y Dirección de Empresas", -1, 1, [null, null, null, 10.436], 5.0, "345", "5", "-1--122--2-12222-12-1--1-21"],
+["UAH", null, null, "Ingeniería Telemática", 0, 0, [null, null, null, 7.575], 6.11, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Lenguas Modernas y Traducción", 4, 0, [null, null, null, 5.659], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAH", null, null, "Lenguas Modernas y Traducción (Guadalajara)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-22-22-22-221---2"],
+["UAH", null, null, "Magisterio de Educación Infantil (Guadalajara)", 3, 0, [null, null, null, 8.253], 5.0, "240", "4", "222222222222222222222222222"],
+["UAH", null, null, "Magisterio de Educación Infantil - Magisterio de Educación Primaria (Guadalajara)", -1, 1, [null, null, null, 9.36], 8.02, "298", "4", "222222222222222222222222222"],
+["UAH", null, null, "Magisterio de Educación Primaria (bilingüe - inglés) (Guadalajara)", 3, 0, [null, null, null, 5.561], 7.72, "240", "4", null],
+["UAH", null, null, "Magisterio de Educación Primaria (Guadalajara)", 3, 0, [null, null, null, 8.7], 8.83, "240", "4", null],
+["UAH", null, null, "Matemáticas y Computación (Guadalajara)", 0, 0, [null, null, null, 10.064], 7.69, "240", "4", "-----2---2--12---------1-2-"],
+["UAH", null, null, "Medicina", 2, 0, [null, null, null, 12.871], 9.76, "360", "6", "-----2-2-----2---------2---"],
+["UAH", null, null, "Química", 1, 0, [null, null, null, 9.864], 5.0, "240", "4", null],
+["UAH", null, null, "Turismo (Guadalajara)", 3, 0, [null, null, null, 5.0], 7.68, "240", "4", "-1--2221-1-12222222-2-12--2"],
+["UAH", null, null, "Turismo - Administración y Dirección de Empresas (Guadalajara)", -1, 1, [null, null, null, 5.0], 5.0, "324", "5", "-1--1221-1-12222212-2-12--2"],
+["UC3M", null, null, "Administración de Empresas (Colmenarejo)", 3, 0, [null, null, null, 10.97], 5.0, "240", "4", "-1--1221-1-12212111-1--2--1"],
+["UC3M", null, null, "Administración de Empresas (español o inglés) (Getafe)", 3, 0, [null, null, null, 11.516], 5.0, "240", "4", "-1--1221-1-12212111-1--2--1"],
+["UC3M", null, null, "Análisis de Datos para la Empresa (Getafe)", 3, 0, [null, null, null, 11.567], 7.39, "240", "4", "-1--1221-1-12212111-1--2--1"],
+["UC3M", null, null, "Ciencia e Ingeniería de Datos (inglés) (Leganés)", 0, 0, [null, null, null, 11.556], 7.56, "240", "4", "-----2-2-2-112--1------1-2-"],
+["UC3M", null, null, "Ciencia e Ingeniería de Datos - Ingeniería en Tecnologías de Telecomunicación (bilingüe) (Leganés)", -1, 1, [null, null, null, 12.124], 5.0, "372", "5.5", "-----2-2-2-112--1------1-2-"],
+["UC3M", null, null, "Ciencia, Tecnología y Humanidades (UAB, UAM y UC3M) (Getafe)", -1, 2, [null, null, null, 5.0], 5.0, "240", "4", "-22-2222-1-11222222-2-12-12"],
+["UC3M", null, null, "Ciencias (UAB, UAM y UC3M) (Leganés)", -1, 2, [null, null, null, 8.661], 7.69, "240", "4", "--2--212-1---2--2-1----2-1-"],
+["UC3M", null, null, "Ciencias Políticas (español o bilingüe) (Getafe)", 3, 0, [null, null, null, 9.542], 7.75, "240", "4", "-1--2222-1-12122122-2-11--1"],
+["UC3M", null, null, "Ciencias Políticas - Sociología (Getafe)", -1, 1, [null, null, null, 9.041], 7.4, "306", "5", "-1--2222-1-12122122-2-11--1"],
+["UC3M", null, null, "Comunicación Audiovisual (español o bilingüe) (Getafe)", 3, 0, [null, null, null, 10.109], 7.92, "240", "4", "-2--2221-1222122122-2-112-1"],
+["UC3M", null, null, "Derecho (Colmenarejo)", 3, 0, [null, null, null, 10.665], 7.63, "240", "4", "-1--2222-1-12122122-2--1--1"],
+["UC3M", null, null, "Derecho (Getafe)", 3, 0, [null, null, null, 11.561], 7.85, "240", "4", "-1--2222-1-12122122-2--1--1"],
+["UC3M", null, null, "Derecho - Administración de Empresas (Colmenarejo)", -1, 1, [null, null, null, 11.25], 7.94, "360", "6", null],
+["UC3M", null, null, "Derecho - Administración de Empresas (español o bilingüe) (Getafe)", -1, 1, [null, null, null, 12.6], 8.11, "360", "6", null],
+["UC3M", null, null, "Derecho - Ciencias Políticas (Getafe)", -1, 1, [null, null, null, 11.178], 7.37, "345", "6", "-1--2222-1-12122122-2-11--1"],
+["UC3M", null, null, "Derecho - Economía (español o bilingüe) (Getafe)", -1, 1, [null, null, null, 12.239], 6.55, "360", "6", "-1--2222-1-12222122-2--2--1"],
+["UC3M", null, null, "Economía (español o inglés) (Getafe)", 3, 0, [null, null, null, 11.263], 7.67, "240", "4", "-1--1221-1-12212111-1--2--1"],
+["UC3M", null, null, "Empresa y Tecnología (inglés) (Getafe)", 3, 0, [null, null, null, 12.213], 5.0, "240", "4", "----1221-1--22121-1----2-21"],
+["UC3M", null, null, "Estudios Culturales (bilingüe) (Getafe)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-1--222--1-11-22-221212---2"],
+["UC3M", null, null, "Estudios Internacionales (inglés) (Getafe)", 3, 0, [null, null, null, 12.063], 6.57, "240", "4", "-1--1221-1-12212112-1-12--2"],
+["UC3M", null, null, "Estudios Internacionales - Administración de Empresas (inglés) (Getafe)", -1, 1, [null, null, null, 13.119], 5.0, "318", "5", "-1--1221-1-12212112-1-12--2"],
+["UC3M", null, null, "Estudios Internacionales - Ciencias Políticas (bilingüe) (Getafe)", -1, 1, [null, null, null, 12.475], 7.43, "330", "5", "-1--2222-1-12222122-2-12--2"],
+["UC3M", null, null, "Estudios Internacionales - Derecho (bilingüe) (Getafe)", -1, 1, [null, null, null, 13.175], 8.44, "361", "5", "-1--2222-1-12222122-2-12--2"],
+["UC3M", null, null, "Estudios Internacionales - Economía (inglés) (Getafe)", -1, 1, [null, null, null, 12.83], 5.0, "318", "5", "-1--1221-1-12212112-1-12--2"],
+["UC3M", null, null, "Filosofía, Política y Economía (UAB, UAM, UC3M y UPF) (Getafe)", -1, 2, [null, null, null, 12.104], 5.0, "240", "4", "-1--2221-1-12212122-1-21--2"],
+["UC3M", null, null, "Finanzas y Contabilidad (español o inglés) (Getafe)", 3, 0, [null, null, null, 11.043], 5.0, "240", "4", "-1--1221-1-12212111-1--2--1"],
+["UC3M", null, null, "Gestión de la Información y Contenidos Digitales (Getafe)", 3, 0, [null, null, null, 9.836], 5.0, "240", "4", "-2--2221-2222222122-2--1--1"],
+["UC3M", null, null, "Historia y Política (bilingüe) (Getafe)", 3, 0, [null, null, null, 8.314], 5.0, "240", "4", "-1--2222-1-12212122-2-11--1"],
+["UC3M", null, null, "Humanidades Digitales (Getafe)", 4, 0, [null, null, null, 5.0], 5.0, "240", "4", "-2--222--1-11-22-221212---2"],
+["UC3M", null, null, "Ingeniería Aeroespacial (inglés) (Leganés)", 0, 0, [null, null, null, 13.3], 7.43, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Biomédica (inglés) (Leganés)", 0, 0, [null, null, null, 12.843], 9.31, "240", "4", null],
+["UC3M", null, null, "Ingeniería de Comunicaciones Móviles y Espaciales (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 10.253], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería de Internet (Leganés)", 0, 0, [null, null, null, 9.764], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería de la Energía (inglés) (Leganés)", 0, 0, [null, null, null, 11.175], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería de Sonido e Imagen (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 10.115], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería Eléctrica (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 10.967], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Electrónica Industrial y Automática (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 10.636], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería en Tecnologías de Telecomunicación (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 10.713], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería en Tecnologías Industriales (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 11.966], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Física (inglés) (Leganés)", 0, 0, [null, null, null, 13.225], 7.38, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Física - Ingeniería en Tecnologías Industriales (bilingüe) (Leganés)", -1, 1, [null, null, null, 13.464], 6.35, "354", "5.5", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Informática (Colmenarejo)", 0, 0, [null, null, null, 10.364], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería Informática (español, bilingüe o inglés) (Leganés)", 0, 0, [null, null, null, 10.978], 5.0, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Ingeniería Informática - Administración de Empresas (Colmenarejo)", -1, 1, [null, null, null, 11.386], 5.0, "384", "6", "-1--1221-2-12212111-1--2-21"],
+["UC3M", null, null, "Ingeniería Informática - Administración de Empresas (Leganés-Getafe)", -1, 1, [null, null, null, 12.053], 5.0, "384", "6", "-1--1221-2-12212111-1--2-21"],
+["UC3M", null, null, "Ingeniería Mecánica (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 11.664], 5.0, "240", "4", "-----2-1-2-112--1------2-2-"],
+["UC3M", null, null, "Ingeniería Robótica (inglés) (Leganés)", 0, 0, [null, null, null, 11.489], 8.63, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Inteligencia Artificial (español o inglés) (Colmenarejo)", 0, 0, [null, null, null, 10.448], 7.04, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Inteligencia Artificial (español o inglés) (Leganés)", 0, 0, [null, null, null, 11.775], 8.05, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Matemática Aplicada (inglés) (Leganés)", 0, 0, [null, null, null, 12.024], 6.89, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Matemáticas y Computación (inglés) (Leganés)", 0, 0, [null, null, null, 12.224], 8.41, "240", "4", "-----2-1-2-112--1------1-2-"],
+["UC3M", null, null, "Neurociencia (inglés) (Getafe)", 1, 0, [null, null, null, 13.1], 9.21, "240", "4", "-----2-2-----2---------2---"],
+["UC3M", null, null, "Periodismo (español o bilingüe) (Getafe)", 3, 0, [null, null, null, 8.903], 6.54, "240", "4", "-21-2221--122122122-2-212-1"],
+["UC3M", null, null, "Periodismo - Comunicación Audiovisual (español o bilingüe) (Getafe)", -1, 1, [null, null, null, 10.939], 7.58, "300", "5", "-21-2221-1222222122-2--1--1"],
+["UC3M", null, null, "Periodismo - Humanidades (Getafe)", -1, 1, [null, null, null, 7.816], 9.07, "372", "6", "-2--2221-112222212212121--1"],
+["UC3M", null, null, "Programa Académico de Ing. de Telecomunicación vía Grado en Ing. en Tecnologías de Telecomunicación (bilingüe) (Leganés)", 0, 0, [null, null, null, 12.889], 5.0, "240+90", "5", null],
+["UC3M", null, null, "Programa Académico de Ing. Industrial vía Grado en Ing. en Tecnologías Industriales (español o bilingüe) (Leganés)", 0, 0, [null, null, null, 13.414], 5.0, "240+90", "5", null],
+["UC3M", null, null, "Programa Académico de Ingeniería Informática vía Grado en Ingeniería Informática (bilingüe) (Leganés y Colmenarejo)", 0, 0, [null, null, null, 12.825], 5.0, "240+90", "5", null],
+["UC3M", null, null, "Relaciones Laborales y Empleo (Getafe)", 3, 0, [null, null, null, 7.503], 5.0, "240", "4", "-1--2222-1-12112112-1--1--1"],
+["UC3M", null, null, "Sociología (español o bilingüe) (Getafe)", 3, 0, [null, null, null, 7.294], 5.0, "240", "4", "-1--2222-1-12122122-2-11--1"],
+["UC3M", null, null, "Sostenibilidad Urbana (Urban Sustainability Studies) (Grado de la Alianza Europea YUFE) (inglés) (Getafe)", 3, 0, [null, null, null, 9.92], 5.0, "180", "3", "-1--1221-1-12212212-1--2-22"],
+["UC3M", null, null, "Turismo (Getafe)", 3, 0, [null, null, null, 6.836], 5.0, "240", "4", "-1--2221-1-12222122-2-12--2"]
+    ];
+    const TIPOS = ["Grado", "Doble grado", "Grado conjunto", "Grado interuniversitario"];
+    const grados = RAW.map((r, i) => ({
+      id: 'g' + i, uni: r[0], codigo: r[1], centro: r[2] || '', nombre: r[3],
+      rama: (r[5] > 0 ? TIPOS[r[5]] + (r[4] >= 0 ? ' · ' + RAMAS[r[4]] : '') : (r[4] >= 0 ? RAMAS[r[4]] : 'Grado')),
+      ramaIdx: r[4], tipo: r[5], notas: r[6], g2: r[7], cred: r[8], cursos: r[9].replace('.', ','), w: r[10]
+    }));
+    const unis = [
+      { name: 'UCM', full: 'Universidad Complutense de Madrid', zona: 'Centro-oeste de Madrid', campus: 'Moncloa y Somosaguas' },
+      { name: 'UAM', full: 'Universidad Autónoma de Madrid', zona: 'Norte', campus: 'Cantoblanco' },
+      { name: 'UPM', full: 'Universidad Politécnica de Madrid', zona: 'Madrid capital y alrededores', campus: 'Ciudad Universitaria, Montegancedo, Campus Sur y sedes en el centro' },
+      { name: 'URJC', full: 'Universidad Rey Juan Carlos', zona: 'Sur y oeste', campus: 'Móstoles, Alcorcón, Fuenlabrada y Vicálvaro' },
+      { name: 'UAH', full: 'Universidad de Alcalá', zona: 'Este', campus: 'Alcalá de Henares' },
+      { name: 'UC3M', full: 'Universidad Carlos III de Madrid', zona: 'Sur', campus: 'Getafe, Leganés y Colmenarejo' }
+    ];
+    this._D = { CENTROS, RAMAS, MATS, CURSOS, grados, unis };
+    return this._D;
+  }
+
+  f3(x) {
+    return (x === null || x === undefined) ? '—' : Number(x).toFixed(3).replace('.', ',');
+  }
+
+  num(v) {
+    const x = parseFloat(String(v).replace(',', '.'));
+    if (isNaN(x)) return null;
+    return Math.min(10, Math.max(0, x));
+  }
+
+  norm(t) {
+    return String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+
+  delta(g) {
+    const a = g.notas[3];
+    const b = g.notas[1];
+    if (a === null || b === null) return null;
+    return Math.round((a - b) * 1000) / 1000;
+  }
+
+  deltaText(g) {
+    const d = this.delta(g);
+    if (d === null) return g.notas[1] === null ? 'Solo hay dato del curso 2025-26' : 'Sin cambio calculable';
+    const sign = d > 0 ? '+' : '';
+    const w = d > 0 ? 'Sube' : (d < 0 ? 'Baja' : 'Igual');
+    return w + ' (' + sign + this.f3(d) + ' desde 2023-24)';
+  }
+
+  go(screen) {
+    return () => {
+      this.setState({ screen });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+  }
+
+  renderVals() {
+    const s = this.getS();
+    const D = this.data();
+    const G = D.grados;
+
+    const NAV_BASE = 'border:0;background:transparent;color:var(--c47657A);font:700 16px/1 Nunito,system-ui,sans-serif;padding:12px 16px;min-height:44px;border-radius:999px;';
+    const NAV_ON = 'border:0;background:var(--cE3F1F8);color:var(--c1D3A4B);font:800 16px/1 Nunito,system-ui,sans-serif;padding:12px 16px;min-height:44px;border-radius:999px;';
+    const CHIP_BASE = 'min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--cC3DBE8);background:var(--cFFFFFF);color:var(--c1D3A4B);font:700 16px/1 Nunito,system-ui,sans-serif;';
+    const CHIP_ON = 'min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--c2B6F8E);background:var(--accBg);color:var(--onAccent);font:700 16px/1 Nunito,system-ui,sans-serif;';
+    const BADGE = 'display:inline-flex;align-items:center;padding:7px 12px;border-radius:999px;font:800 14px/1 Nunito,system-ui,sans-serif;';
+    const B_OK = BADGE + 'background:var(--cCFEBDB);color:var(--c1B5A44);';
+    const B_NEAR = BADGE + 'background:var(--cD3E8F4);color:var(--c1D4C66);';
+    const B_LOW = BADGE + 'background:var(--cFBF1DF);color:var(--c6B4A12);';
+    const CARD = 'display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;flex:1 1 240px;min-width:0;padding:28px;border-radius:24px;border:0;color:var(--c1D3A4B);';
+    const CMP_BTN = 'min-height:48px;padding:0 22px;border-radius:999px;font:700 16px/1 Nunito,system-ui,sans-serif;';
+
+    const scrollTop = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+    const DARKVARS = '--cFFFFFF:#15232D;--cF3F9FC:#121F28;--cE3F1F8:#1A2F3C;--cE3F3EA:#18302A;--cDDF0EF:#183230;--cD3E8F4:#1E3646;--cCFE8D8:#1F3F33;--cCFEBDB:#1F3F33;--cC6E6D3:#285141;--cA5D6BA:#3A7058;--cFBF1DF:#332B1C;--cF8E7B9:#43381F;--cD3E5EE:#2A4150;--cC3DBE8:#34505F;--cA9CCE0:#4B7186;--c7FB7D4:#5E9DBB;--c47657A:#A9BFCC;--c1D3A4B:#E6F0F5;--c3D5F52:#B5CFC3;--c1B5A44:#A8E0C6;--c1F5E48:#A8E0C6;--c1D4C66:#A9D6EE;--c6B4A12:#F0D79B;--c1D5873:#8CC6E3;--c2B6F8E:#7DBBDB;--c2E7D62:#5FBF9A;--onAccent:#FFFFFF;--accBg:#2B6F8E;color-scheme:dark;--cF4F9FB:#0E1820;--greenBg:#2E7D62;';
+    const rootStyle = 'background:var(--cF4F9FB);color:var(--c1D3A4B);font-family:Nunito,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;' + (s.dark ? DARKVARS : '');
+    const toggleDark = () => { this.setState({ dark: !this.getS().dark }); };
+    const startQuiz = () => { this.setState({ screen: 'quiz', q: 0, answers: [] }); scrollTop(); };
+    const goGrados = () => { this.setState({ screen: 'grados', rama: 'all', uni: 'all', search: '', order: 'nombre', limit: 20 }); scrollTop(); };
+
+    // ---- Navegación
+    const navDefs = [
+      { label: 'Cuestionario', on: ['quiz', 'results'], go: startQuiz },
+      { label: 'Grados', on: ['grados', 'ficha'], go: goGrados },
+      { label: 'Comparar', on: ['compare'], go: this.go('compare') },
+      { label: 'Calculadora PAU', on: ['pau'], go: this.go('pau') },
+      { label: 'Fechas', on: ['fechas'], go: this.go('fechas') },
+      { label: 'Universidades', on: ['unis'], go: this.go('unis') }
+    ];
+    const navItems = navDefs.map((n) => ({ label: n.label, go: n.go, style: n.on.indexOf(s.screen) >= 0 ? NAV_ON : NAV_BASE }));
+
+    // ---- Cuestionario
+    const AREA_LABELS = { tec: 'Ingeniería y Arquitectura', salud: 'Ciencias de la Salud', soc: 'Ciencias Sociales y Jurídicas', cien: 'Ciencias', arte: 'Artes y Humanidades' };
+    const AREA_RAMAS = { tec: [0], cien: [1], salud: [2], soc: [3], arte: [4] };
+    const o = (t, w) => ({ t, w });
+    const questions = [
+      { q: '¿Qué te gusta más hacer en tu tiempo libre?', opts: [
+        o('Montar, programar o arreglar cosas', { tec: 3 }),
+        o('Ayudar o escuchar a otras personas', { soc: 2, salud: 2 }),
+        o('Crear, dibujar, grabar o escribir', { arte: 3 }),
+        o('Investigar cómo funcionan las cosas', { cien: 3, tec: 1 }) ] },
+      { q: '¿Qué problema te gustaría ayudar a resolver?', opts: [
+        o('Mejorar la salud de las personas', { salud: 3 }),
+        o('Crear tecnología que use todo el mundo', { tec: 3 }),
+        o('Entender y mejorar cómo funciona la sociedad', { soc: 3 }),
+        o('Descubrir algo nuevo sobre la naturaleza o el universo', { cien: 3 }) ] },
+      { q: '¿Dónde te imaginas trabajando?', opts: [
+        o('En un hospital, una clínica o un centro de salud', { salud: 3 }),
+        o('En una empresa de tecnología o una ingeniería', { tec: 3 }),
+        o('En un colegio, un despacho, una empresa o una institución', { soc: 3 }),
+        o('En un estudio creativo, medios de comunicación o producción cultural', { arte: 3 }) ] },
+      { q: '¿Qué asignaturas se te hacen más amenas?', opts: [
+        o('Matemáticas, Física y Tecnología', { tec: 3, cien: 1 }),
+        o('Biología y Química', { salud: 2, cien: 2 }),
+        o('Historia, Economía o Filosofía', { soc: 2, arte: 2 }),
+        o('Lengua, Literatura o idiomas', { arte: 2, soc: 2 }) ] },
+      { q: '¿Cómo prefieres trabajar?', opts: [
+        o('Con ideas y creatividad', { arte: 3 }),
+        o('Con datos y lógica', { tec: 2, cien: 2 }),
+        o('Con personas, cara a cara', { salud: 2, soc: 2 }),
+        o('En el laboratorio o en el campo', { cien: 3 }) ] },
+      { q: 'Si tuvieras que hacer un trabajo en grupo, ¿qué papel te sale solo?', opts: [
+        o('El que organiza y reparte las tareas', { soc: 3 }),
+        o('El que resuelve los problemas técnicos', { tec: 3 }),
+        o('El que aporta ideas y le da forma al resultado', { arte: 3 }),
+        o('El que busca datos y comprueba que todo cuadra', { cien: 3 }) ] },
+      { q: '¿Cómo llevas las matemáticas?', opts: [
+        o('Me encantan y las uso para entender otras cosas', { tec: 3, cien: 2 }),
+        o('Bien, siempre que tengan una aplicación práctica', { tec: 2, soc: 1, salud: 1 }),
+        o('Las aguanto si hace falta, pero no son lo mío', { soc: 2, arte: 1, salud: 1 }),
+        o('Prefiero evitarlas cuanto pueda', { arte: 3, soc: 1 }) ] },
+      { q: '¿Qué te parece estudiar muchos años, con prácticas y mucha materia?', opts: [
+        o('Me da igual si el objetivo me motiva de verdad', { salud: 3, cien: 1 }),
+        o('Prefiero algo de unos 4 años y empezar a trabajar', { soc: 2, tec: 2, arte: 1 }),
+        o('Me gustaría seguir con un máster o un doctorado', { cien: 3, tec: 1 }),
+        o('Me importa más crear mi propio proyecto que el título', { arte: 2, tec: 1, soc: 1 }) ] },
+      { q: '¿Qué tipo de reto te motiva más?', opts: [
+        o('Diseñar algo que funcione de principio a fin', { tec: 3 }),
+        o('Convencer, negociar o defender una idea', { soc: 3 }),
+        o('Cuidar a alguien y ver que mejora', { salud: 3 }),
+        o('Expresar algo que nadie había expresado así', { arte: 3 }) ] },
+      { q: '¿Qué película o documental verías hoy?', opts: [
+        o('Uno sobre medicina, cuerpo humano o psicología', { salud: 3 }),
+        o('Uno sobre inventos, espacio o ingeniería', { tec: 2, cien: 2 }),
+        o('Uno sobre historia, política o economía', { soc: 3 }),
+        o('Uno de cine de autor, música o arte', { arte: 3 }) ] },
+      { q: '¿Cuánto te gusta trabajar con ordenadores?', opts: [
+        o('Es mi herramienta favorita: programar, modelar, analizar', { tec: 3 }),
+        o('Los uso para lo necesario y para crear contenido', { arte: 2, soc: 1 }),
+        o('Los uso para analizar datos o simular experimentos', { cien: 3 }),
+        o('Prefiero trabajar con personas o con las manos', { salud: 2, soc: 1, arte: 1 }) ] },
+      { q: '¿Cómo reaccionas ante una situación tensa o urgente?', opts: [
+        o('Mantengo la calma y actúo: soy de los que ayudan', { salud: 3 }),
+        o('Analizo qué falla y lo soluciono paso a paso', { tec: 3 }),
+        o('Hablo con todos para que se entiendan', { soc: 3 }),
+        o('Me bloqueo menos si tengo tiempo para pensar a mi manera', { arte: 2, cien: 2 }) ] },
+      { q: '¿Qué valoras más en un trabajo?', opts: [
+        o('Ayudar directamente a otras personas', { salud: 3, soc: 1 }),
+        o('Hacer cosas innovadoras y bien pagadas', { tec: 3 }),
+        o('Aprender cosas nuevas todos los días', { cien: 3 }),
+        o('Tener libertad para crear y expresarme', { arte: 3 }) ] },
+      { q: '¿Qué prefieres: seguir un método o inventarlo?', opts: [
+        o('Un método claro con resultados comprobables', { cien: 2, tec: 2, salud: 1 }),
+        o('Un método, pero adaptándolo a cada persona', { salud: 2, soc: 2 }),
+        o('Inventar mi forma de hacerlo', { arte: 3 }),
+        o('Combinar teoría y práctica, según el caso', { tec: 2, soc: 1, cien: 1 }) ] },
+      { q: 'Dentro de diez años, ¿qué te gustaría que dijeran de ti?', opts: [
+        o('Que he ayudado a mucha gente', { salud: 3, soc: 1 }),
+        o('Que he construido algo útil y que funciona', { tec: 3 }),
+        o('Que he descubierto o explicado algo importante', { cien: 3 }),
+        o('Que mi trabajo ha emocionado o ha hecho pensar', { arte: 3, soc: 1 }) ] }
+    ];
+    const qIndex = Math.min(s.q, questions.length - 1);
+    const question = questions[qIndex];
+    const quizOptions = question.opts.map((opt, oi) => ({
+      label: opt.t,
+      pick: () => {
+        const answers = (this.getS().answers || []).concat([oi]);
+        if (answers.length >= questions.length) {
+          this.setState({ answers, screen: 'results', limit: 20 });
+          scrollTop();
+        } else {
+          this.setState({ answers, q: answers.length });
+        }
+      }
+    }));
+    const quizBack = () => {
+      const cur = this.getS();
+      this.setState({ answers: cur.answers.slice(0, -1), q: Math.max(0, cur.q - 1) });
+    };
+    const counts = {};
+    Object.keys(AREA_LABELS).forEach((k) => { counts[k] = 0; });
+    s.answers.forEach((oi, qi) => {
+      const ch = questions[qi] && questions[qi].opts[oi];
+      if (ch) Object.keys(ch.w).forEach((k) => { counts[k] += ch.w[k]; });
+    });
+    const totalPts = Object.keys(counts).reduce((t, k) => t + counts[k], 0) || 1;
+    const areaBars = Object.keys(AREA_LABELS).sort((x, y) => counts[y] - counts[x]).map((k) => {
+      const pct = Math.round((counts[k] / totalPts) * 100);
+      return { label: AREA_LABELS[k], pct: pct + ' %', barStyle: 'height:100%;border-radius:999px;background:' + (counts[k] === Math.max.apply(null, Object.keys(counts).map((z) => counts[z])) ? 'var(--greenBg)' : 'var(--c7FB7D4)') + ';width:' + Math.max(pct, 2) + '%;' };
+    });
+    const ranked = Object.keys(AREA_LABELS).filter((k) => counts[k] > 0).sort((a, b) => counts[b] - counts[a]).slice(0, 2);
+    const resultAreas = ranked.map((k) => ({ label: AREA_LABELS[k] }));
+    const resultRamas = [];
+    ranked.forEach((k) => AREA_RAMAS[k].forEach((r) => { if (resultRamas.indexOf(r) < 0) resultRamas.push(r); }));
+
+    // ---- Calculadora PAU
+    const nmb = this.num(s.nmb);
+    const exams = [s.e1, s.e2, s.e3, s.modn].map((v) => this.num(v));
+    const allFilled = nmb !== null && exams.every((x) => x !== null);
+    let fo = 0;
+    let na = 0;
+    let pass = false;
+    if (allFilled) {
+      fo = exams.reduce((a, b) => a + b, 0) / 4;
+      na = 0.6 * nmb + 0.4 * fo;
+      pass = fo >= 4 && na >= 5;
+    }
+    const showOk = allFilled && pass;
+    const showFail = allFilled && !pass;
+    const showEmpty = !allFilled;
+    const missing = [];
+    if (nmb === null) missing.push('la nota media de Bachillerato');
+    if (this.num(s.e1) === null) missing.push('Lengua Castellana y Literatura');
+    if (this.num(s.e2) === null) missing.push('Historia de España');
+    if (this.num(s.e3) === null) missing.push('Lengua Extranjera');
+    if (this.num(s.modn) === null) missing.push('la nota de modalidad');
+    const missingText = missing.length === 5 ? '' : 'Te falta: ' + missing.join(', ') + '.';
+    const warns = [];
+    const rawNums = [s.nmb, s.e1, s.e2, s.e3, s.modn, s.v1n, s.v2n, s.v3n, s.v4n];
+    if (rawNums.some((v) => { const x = parseFloat(String(v).replace(',', '.')); return !isNaN(x) && (x > 10 || x < 0); })) warns.push('Alguna nota está fuera de 0–10: la hemos ajustado al límite.');
+    const picked = [s.modm, s.v1m, s.v2m, s.v3m, s.v4m].filter((v) => v !== '' && v !== 'x' && v !== undefined);
+    if (picked.some((v, i) => picked.indexOf(v) !== i)) warns.push('Has elegido la misma materia más de una vez: solo cuenta su mejor nota.');
+    [[s.v1m, s.v1n], [s.v2m, s.v2n], [s.v3m, s.v3n], [s.v4m, s.v4n]].forEach((p) => {
+      const n = this.num(p[1]);
+      if (n !== null && n < 5) warns.push('Una materia voluntaria con menos de 5 no suma, así que la ignoramos.');
+      if (n !== null && (p[0] === '' || p[0] === undefined)) warns.push('Has puesto una nota voluntaria sin elegir materia: no se puede usar.');
+    });
+    const warnItems = warns.filter((w, i) => warns.indexOf(w) === i).map((t) => ({ t }));
+
+    const best = {};
+    [[s.modm, s.modn], [s.v1m, s.v1n], [s.v2m, s.v2n], [s.v3m, s.v3n], [s.v4m, s.v4n]].forEach((p) => {
+      const i = parseInt(p[0], 10);
+      const n = this.num(p[1]);
+      if (!isNaN(i) && n !== null && n >= 5) {
+        if (best[i] === undefined || n > best[i]) best[i] = n;
+      }
+    });
+    const subj = Object.keys(best).map((k) => ({ i: parseInt(k, 10), n: best[k] }));
+
+    const statusOf = (margin) => {
+      if (margin >= 0) return { label: 'Te llega', style: B_OK };
+      if (margin >= -0.5) return { label: 'Muy cerca', style: B_NEAR };
+      return { label: 'Por ahora, por debajo', style: B_LOW };
+    };
+    const mine = (g) => {
+      if (!showOk) return null;
+      if (!g.w) {
+        const cut0 = g.notas[3];
+        if (cut0 === null) return { noW: true };
+        const tops = subj.map((sb) => sb.n).sort((a, b) => b - a);
+        const maxAdm = na + 0.2 * (tops[0] || 0) + 0.2 * (tops[1] || 0);
+        if (na >= cut0) return { noW: true, na, margin: na - cut0, st: statusOf(na - cut0) };
+        if (maxAdm >= cut0) return { noW: true, na, maybe: true, st: { label: 'Depende de las ponderaciones', style: B_NEAR } };
+        return { noW: true, na, margin: maxAdm - cut0, st: { label: 'Por ahora, por debajo', style: B_LOW } };
+      }
+      const cand = subj.map((sb) => {
+        const c = g.w.charAt(sb.i);
+        const a = c === '2' ? 0.2 : (c === '1' ? 0.1 : 0);
+        return { t: D.MATS[sb.i], n: sb.n, a, v: a * sb.n };
+      }).filter((p) => p.v > 0).sort((a, b) => b.v - a.v);
+      const parts = cand.slice(0, 2);
+      const adm = na + parts.reduce((t, p) => t + p.v, 0);
+      const cut = g.notas[3];
+      if (cut === null) return { adm, parts, na, noCut: true };
+      return { adm, parts, na, margin: adm - cut, st: statusOf(adm - cut) };
+    };
+
+    const setField = (key) => (e) => { this.setState({ [key]: e.target.value }); };
+    const examFields = [
+      { id: 'pau-e1', key: 'e1', label: 'Lengua Castellana y Literatura' },
+      { id: 'pau-e2', key: 'e2', label: 'Historia de España' },
+      { id: 'pau-e3', key: 'e3', label: 'Lengua Extranjera' }
+    ].map((f) => ({ id: f.id, label: f.label, value: s[f.key], onChange: setField(f.key) }));
+    const matOptions = [{ v: '', t: 'Elige una materia' }]
+      .concat(D.MATS.map((t, i) => ({ v: String(i), t: t, k: t }))
+        .sort((a, b) => a.k.localeCompare(b.k, 'es')).map((o) => ({ v: o.v, t: o.t })))
+      .concat([{ v: 'x', t: 'Otra materia (no figura en la tabla)' }]);
+    const volFields = [1, 2, 3, 4].map((n) => ({
+      idM: 'pau-v' + n + 'm', idN: 'pau-v' + n + 'n',
+      labelM: 'Materia voluntaria ' + n, labelN: 'Nota',
+      valueM: s['v' + n + 'm'], valueN: s['v' + n + 'n'],
+      onM: setField('v' + n + 'm'), onN: setField('v' + n + 'n')
+    }));
+    const pq = this.norm(s.pauQ || '').trim();
+    const pauFound = (showOk && pq.length >= 2) ? G.filter((g) => this.norm(g.nombre).indexOf(pq) >= 0).slice(0, 6).map((g) => ({
+      name: g.nombre + ' · ' + g.uni, pick: () => { this.setState({ pauG: g.id, pauQ: '' }); }
+    })) : [];
+    const pg = G.filter((g) => g.id === s.pauG)[0];
+    const pm = (pg && showOk) ? mine(pg) : null;
+    const fm3 = (x) => this.f3(x).replace('.', ',');
+    const pauParts = (pm && pm.parts) ? pm.parts.map((p) => ({ t: p.t + ': ' + String(p.a).replace('.', ',') + ' × ' + fm3(p.n) + ' = ' + fm3(p.v) })) : [];
+    const pauSelText = !pm ? '' : (pm.adm !== undefined ? this.f3(pm.adm) + ' sobre 14' : 'Sin ponderaciones para este grado (acceso: ' + this.f3(pm.na) + ' sobre 10)');
+    const fillExample = () => {
+      this.setState({ pauQ: '', pauG: '', nmb: '8.5', e1: '7.5', e2: '8', e3: '7', modm: '5', modn: '8', v1m: '13', v1n: '8.5', v2m: '23', v2n: '7', v3m: '', v3n: '', v4m: '', v4n: '' });
+    };
+    const clearPau = () => {
+      this.setState({ pauQ: '', pauG: '', nmb: '', e1: '', e2: '', e3: '', modm: '', modn: '', v1m: '', v1n: '', v2m: '', v2n: '', v3m: '', v3n: '', v4m: '', v4n: '' });
+    };
+
+    // ---- Comparador
+    const cmpIds = s.compare || [];
+    const cmpFull = cmpIds.length >= 3;
+    const toggleCompare = (id) => () => {
+      const cur = this.getS().compare || [];
+      if (cur.indexOf(id) >= 0) this.setState({ compare: cur.filter((x) => x !== id) });
+      else if (cur.length < 3) this.setState({ compare: cur.concat([id]) });
+    };
+    const cmpBtnStyle = (id) => cmpIds.indexOf(id) >= 0
+      ? CMP_BTN + 'border:2px solid var(--c2E7D62);background:var(--cE3F3EA);color:var(--c1B5A44);'
+      : CMP_BTN + 'border:2px solid var(--c2B6F8E);background:var(--cFFFFFF);color:var(--c2B6F8E);';
+    const cmpBtnLabel = (id) => cmpIds.indexOf(id) >= 0 ? 'Quitar de comparar' : (cmpFull ? 'Máximo 3 grados' : 'Comparar');
+    const cmpHint = cmpFull ? 'Has elegido 3 de 3 grados. Quita uno para cambiarlo.' : 'Has elegido ' + cmpIds.length + ' de 3 grados para comparar.';
+    const cmpGrados = cmpIds.map((id) => G.filter((g) => g.id === id)[0]).filter(Boolean);
+    const nCmp = cmpGrados.length;
+    const cmpGrid = 'display:grid;grid-template-columns:170px repeat(' + Math.max(nCmp, 1) + ',minmax(0,1fr));';
+    const cell = (t, muted) => ({ text: t, isText: true, isBadge: false, badgeStyle: '', style: 'white-space:pre-line;font:600 16px/1.55 Nunito,system-ui,sans-serif;color:' + (muted ? 'var(--c47657A)' : 'var(--c1D3A4B)') + ';' });
+    const badgeCell = (st) => ({ text: st.label, isText: false, isBadge: true, style: '', badgeStyle: st.style });
+    const pondNames = (g, c) => {
+      if (!g.w) return null;
+      const out = [];
+      for (let i = 0; i < D.MATS.length; i++) { if (g.w.charAt(i) === c) out.push(D.MATS[i]); }
+      return out;
+    };
+    const cmpRows = [
+      { label: 'Universidad', cells: cmpGrados.map((g) => cell(g.uni)) },
+      { label: 'Centro', cells: cmpGrados.map((g) => cell(g.centro || 'No figura', true)) },
+      { label: 'Rama', cells: cmpGrados.map((g) => cell(g.rama)) },
+      { label: 'Código', cells: cmpGrados.map((g) => cell(g.codigo || 'No figura')) },
+      { label: 'Créditos', cells: cmpGrados.map((g) => cell(g.cred)) },
+      { label: 'Duración', cells: cmpGrados.map((g) => cell(g.cursos + ' cursos')) },
+      { label: 'Nota de corte Grupo 2 (titulados)', cells: cmpGrados.map((g) => cell(g.g2 === null ? 'Sin dato' : g.g2.toFixed(2).replace('.', ','))) },
+      { label: 'Nota de corte 2022-23', cells: cmpGrados.map((g) => cell(this.f3(g.notas[0]))) },
+      { label: 'Nota de corte 2023-24', cells: cmpGrados.map((g) => cell(this.f3(g.notas[1]))) },
+      { label: 'Nota de corte 2024-25', cells: cmpGrados.map((g) => cell(this.f3(g.notas[2]))) },
+      { label: 'Nota de corte 2025-26', cells: cmpGrados.map((g) => cell(this.f3(g.notas[3]))) },
+      { label: 'Cambio', cells: cmpGrados.map((g) => cell(this.deltaText(g), true)) },
+      { label: 'Ponderan 0,2', cells: cmpGrados.map((g) => { const l = pondNames(g, '2'); return cell(l ? l.join('\n') : 'Sin datos', !l); }) },
+      { label: 'Ponderan 0,1', cells: cmpGrados.map((g) => { const l = pondNames(g, '1'); return cell(l ? l.join('\n') : 'Sin datos', !l); }) },
+      { label: 'Tu nota de admisión', cells: cmpGrados.map((g) => { const m = mine(g); return (m && m.adm !== undefined) ? cell(this.f3(m.adm)) : cell('Sin calcular', true); }) },
+      { label: 'Estado', cells: cmpGrados.map((g) => { const m = mine(g); return (m && m.st) ? badgeCell(m.st) : cell('Sin calcular', true); }) }
+    ];
+    const openFicha = (id) => () => { this.setState({ screen: 'ficha', fichaId: id }); scrollTop(); };
+    const cmpHeads = cmpGrados.map((g) => ({ name: g.nombre, open: openFicha(g.id), remove: toggleCompare(g.id) }));
+    const cmpQ = this.norm(s.cmpSearch || '').trim();
+    const cmpHasSearch = cmpQ.length >= 2;
+    const cmpFound = cmpHasSearch ? G.filter((g) => this.norm(g.nombre).indexOf(cmpQ) >= 0).slice(0, 8) : [];
+    const cmpSearchItems = cmpFound.map((g) => ({
+      name: g.nombre, uni: g.uni + (g.centro ? ' · ' + g.centro : ''),
+      label: cmpBtnLabel(g.id), style: cmpBtnStyle(g.id), toggle: toggleCompare(g.id)
+    }));
+
+    // ---- Listado de grados
+    const showList = s.screen === 'results' || s.screen === 'grados';
+    let filtered = G;
+    let uniNoData = false;
+    if (s.screen === 'results') {
+      filtered = G.filter((g) => resultRamas.indexOf(g.ramaIdx) >= 0);
+    } else {
+      if (s.rama === 'dob') filtered = filtered.filter((g) => g.tipo > 0);
+      else if (s.rama !== 'all') filtered = filtered.filter((g) => g.ramaIdx === parseInt(s.rama, 10));
+      if (s.uni !== 'all') {
+        filtered = filtered.filter((g) => g.uni === s.uni);
+        if (filtered.length === 0 && D.grados.filter((g) => g.uni === s.uni).length === 0) uniNoData = true;
+      }
+      const q = this.norm(s.search || '').trim();
+      if (q.length > 0) filtered = filtered.filter((g) => this.norm(g.nombre).indexOf(q) >= 0);
+    }
+    const sorted = filtered.slice();
+    if (s.screen === 'grados' && s.order === 'corte-desc') {
+      sorted.sort((a, b) => (b.notas[3] === null ? -1 : b.notas[3]) - (a.notas[3] === null ? -1 : a.notas[3]));
+    } else if (s.screen === 'grados' && s.order === 'corte-asc') {
+      sorted.sort((a, b) => (a.notas[3] === null ? 99 : a.notas[3]) - (b.notas[3] === null ? 99 : b.notas[3]));
+    } else {
+      sorted.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+    }
+    const shown = sorted.slice(0, s.limit);
+    const mkItem = (g) => {
+      const m = mine(g);
+      return {
+        name: g.nombre, uni: g.uni, centro: g.centro, rama: g.rama,
+        corte: g.notas[3] === null ? 'no figura este curso' : this.f3(g.notas[3]),
+        cambio: this.deltaText(g),
+        hasMine: !!(m && m.adm !== undefined), mineText: (m && m.adm !== undefined) ? this.f3(m.adm) : '',
+        noW: !!(m && m.noW),
+        showBadge: !!(m && m.st), badgeLabel: (m && m.st) ? m.st.label : '', badgeStyle: (m && m.st) ? m.st.style : '',
+        open: openFicha(g.id), toggle: toggleCompare(g.id), cmpLabel: cmpBtnLabel(g.id), cmpStyle: cmpBtnStyle(g.id)
+      };
+    };
+    const gradoItems = shown.map(mkItem);
+    const ramaDefs = [{ key: 'all', label: 'Todas' }, { key: '0', label: 'Ingeniería y Arquitectura' }, { key: '1', label: 'Ciencias' }, { key: '2', label: 'Ciencias de la Salud' }, { key: '3', label: 'Ciencias Sociales y Jurídicas' }, { key: '4', label: 'Artes y Humanidades' }, { key: 'dob', label: 'Dobles y conjuntos' }];
+    const ramaChips = ramaDefs.map((c) => ({
+      label: c.label, pressed: s.rama === c.key ? 'true' : 'false', style: s.rama === c.key ? CHIP_ON : CHIP_BASE,
+      pick: () => { this.setState({ rama: c.key, limit: 20 }); }
+    }));
+    const uniChips = [{ key: 'all', label: 'Todas' }].concat(D.unis.map((u) => ({ key: u.name, label: u.name }))).map((c) => ({
+      label: c.label, pressed: s.uni === c.key ? 'true' : 'false', style: s.uni === c.key ? CHIP_ON : CHIP_BASE,
+      pick: () => { this.setState({ uni: c.key, limit: 20 }); }
+    }));
+
+    // ---- Ficha
+    const fg = G.filter((g) => g.id === s.fichaId)[0] || G[0];
+    const fm = mine(fg);
+    const fichaBars = D.CURSOS.map((c, i) => {
+      const v = fg.notas[i];
+      const pct = v === null ? 0 : Math.round((v / 14) * 100);
+      const bg = (v !== null && v <= 5.0001) ? 'var(--cA9CCE0)' : 'var(--c2B6F8E)';
+      return { curso: c, value: this.f3(v), barStyle: 'width:64%;border-radius:12px 12px 0 0;background:' + bg + ';height:' + pct + '%;' };
+    });
+    const fichaChartLabel = 'Notas de corte de ' + fg.nombre + ': ' + D.CURSOS.map((c, i) => c + ' ' + this.f3(fg.notas[i])).join(', ');
+    const w2 = pondNames(fg, '2');
+    const w1 = pondNames(fg, '1');
+
+    // ---- Resultados PAU
+    let cntOk = 0;
+    let cntNear = 0;
+    let cntLow = 0;
+    let cntMaybe = 0;
+    const reach = [];
+    if (showOk) {
+      G.forEach((g) => {
+        const m = mine(g);
+        if (!m || !m.st) return;
+        if (m.maybe) { cntMaybe++; return; }
+        if (m.margin >= 0) { cntOk++; reach.push({ g, m }); }
+        else if (m.margin >= -0.5) cntNear++;
+        else cntLow++;
+      });
+    }
+    reach.sort((a, b) => b.g.notas[3] - a.g.notas[3]);
+    const topRows = reach.slice(0, 5).map((r) => ({
+      name: r.g.nombre, uni: r.g.uni, corte: this.f3(r.g.notas[3]), mine: this.f3(r.m.adm !== undefined ? r.m.adm : r.m.na), open: openFicha(r.g.id)
+    }));
+
+    // ---- Fechas
+    const fechaSteps = [
+      { when: 'Finales de mayo o principios de junio', title: 'PAU', text: 'Haces los exámenes de la fase obligatoria y, si quieres, de la voluntaria para subir nota.' },
+      { when: 'Unos días después de la PAU', title: 'Notas de la PAU', text: 'Publican tus calificaciones. Si algo no te cuadra, puedes pedir la revisión.' },
+      { when: 'Junio y julio', title: 'Preinscripción', text: 'Eliges tus grados por orden de preferencia en el distrito único universitario de Madrid.' },
+      { when: 'Julio', title: 'Listas de admitidos', text: 'Sabes en qué grado y universidad has entrado según tu nota de admisión.' },
+      { when: 'Tras las listas', title: 'Matrícula', text: 'Formalizas tu plaza. Si no entras en tu primera opción, hay nuevas listas y plazos para seguir intentándolo.' }
+    ].map((x, i) => Object.assign({ n: i + 1 }, x));
+
+    // ---- Universidades
+    const CAMPUS = {
+      UCM: [['Moncloa', 40.4469, -3.7273], ['Somosaguas', 40.4294, -3.7933]],
+      UAM: [['Cantoblanco', 40.5440, -3.6900]],
+      UPM: [['Ciudad Universitaria', 40.4430, -3.7270], ['Campus Sur', 40.3893, -3.6290], ['Montegancedo', 40.4040, -3.8370]],
+      URJC: [['Móstoles', 40.3350, -3.8730], ['Alcorcón', 40.3500, -3.8190], ['Fuenlabrada', 40.2830, -3.8190], ['Vicálvaro', 40.4000, -3.6050], ['Aranjuez', 40.0330, -3.6030]],
+      UAH: [['Alcalá de Henares', 40.5080, -3.3640], ['Guadalajara', 40.6300, -3.1650]],
+      UC3M: [['Getafe', 40.3150, -3.7270], ['Leganés', 40.3320, -3.7650], ['Colmenarejo', 40.5480, -4.0220]]
+    };
+    const UCOL = { UCM: 'var(--c2B6F8E)', UAM: 'var(--c2E7D62)', UPM: 'var(--cC4763A)', URJC: 'var(--c8A5FB5)', UAH: 'var(--cB5476B)', UC3M: 'var(--c1F9FB0)' };
+    const LON0 = -4.15, LON1 = -3.10, LAT0 = 39.98, LAT1 = 40.68;
+    const jit = { UCM: [-0.012, 0.008], UAM: [0, 0], UPM: [0.012, -0.008], URJC: [0, 0], UAH: [0, 0], UC3M: [0, 0] };
+    const pos = (lat, lon) => 'left:' + (((lon - LON0) / (LON1 - LON0)) * 100).toFixed(2) + '%;top:' + (((LAT1 - lat) / (LAT1 - LAT0)) * 100).toFixed(2) + '%;';
+    const dotStyle = (u, lat, lon, size, op) => 'position:absolute;' + pos(lat + jit[u][1], lon + jit[u][0]) + 'width:' + size + 'px;height:' + size + 'px;margin:-' + size / 2 + 'px 0 0 -' + size / 2 + 'px;border-radius:50%;background:' + UCOL[u] + ';border:2px solid var(--cFFFFFF);box-sizing:border-box;opacity:' + op + ';';
+    const mapDots = [];
+    Object.keys(CAMPUS).forEach((u) => CAMPUS[u].forEach((c) => mapDots.push({ title: u + ' · ' + c[0], style: dotStyle(u, c[1], c[2], 16, 1) })));
+    const madridStyle = 'position:absolute;' + pos(40.4168, -3.7038) + 'width:' + ((0.26 / (LON1 - LON0)) * 100).toFixed(1) + '%;height:' + ((0.17 / (LAT1 - LAT0)) * 100).toFixed(1) + '%;transform:translate(-50%,-50%);border-radius:50%;background:var(--cC6E6D3);opacity:0.7;';
+    const madridLabel = 'position:absolute;' + pos(40.4168, -3.7038) + 'transform:translate(-50%,-50%);font:800 13px/1 Nunito,system-ui,sans-serif;color:var(--c1B5A44);pointer-events:none;';
+    const mapLegend = Object.keys(UCOL).map((u) => ({ name: u, style: 'display:inline-flex;align-items:center;gap:8px;font:800 14px/1 Nunito,system-ui,sans-serif;color:var(--c1D3A4B);', dot: 'width:14px;height:14px;border-radius:50%;background:' + UCOL[u] + ';' }));
+    const uniCards = D.unis.map((u) => {
+      const n = G.filter((g) => g.uni === u.name).length;
+      const TINTS = { UCM: ['var(--cE3F1F8)', 'var(--c1D4C66)'], UAM: ['var(--cE3F3EA)', 'var(--c1B5A44)'], UPM: ['var(--cD3E8F4)', 'var(--c1D4C66)'], URJC: ['var(--cCFE8D8)', 'var(--c1B5A44)'], UAH: ['var(--cFBF1DF)', 'var(--c6B4A12)'], UC3M: ['var(--cE3F1F8)', 'var(--c2B6F8E)'] };
+      const tn = TINTS[u.name] || ['var(--cE3F1F8)', 'var(--c1D4C66)'];
+      const mini = [];
+      Object.keys(CAMPUS).forEach((k) => CAMPUS[k].forEach((c) => mini.push({ style: dotStyle(k, c[1], c[2], k === u.name ? 14 : 8, k === u.name ? 1 : 0.28) })));
+      const links = (CAMPUS[u.name] || []).map((c) => ({ n: c[0], href: 'https://www.openstreetmap.org/?mlat=' + c[1] + '&mlon=' + c[2] + '#map=15/' + c[1] + '/' + c[2] }));
+      return Object.assign({}, u, {
+        mini, links, miniLabel: 'Esquema de los campus de ' + u.name + ' en la Comunidad de Madrid',
+        tileStyle: 'display:flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:18px;background:' + tn[0] + ';color:' + tn[1] + ';font:800 ' + (u.name.length > 3 ? 15 : 18) + 'px/1 Nunito,system-ui,sans-serif;',
+        status: n > 0 ? n + ' grados con datos oficiales' : 'Datos pendientes',
+        statusStyle: n > 0 ? B_OK : B_LOW,
+        pick: () => { this.setState({ screen: 'grados', rama: 'all', uni: u.name, search: '', order: 'nombre', limit: 20 }); scrollTop(); }
+      });
+    });
+
+    const homeCards = [
+      { title: 'Calculadora de nota de PAU', text: 'Calcula tu nota de acceso y de admisión con las ponderaciones reales de cada grado.', go: this.go('pau'), bg: 'var(--cE3F1F8)' },
+      { title: 'Comparar grados', text: 'Pon dos o tres grados lado a lado: notas de corte de cada curso y materias que ponderan.', go: this.go('compare'), bg: 'var(--cE3F3EA)' },
+      { title: 'Fechas de matriculación', text: 'Las etapas del proceso, de la PAU a la matrícula, en orden.', go: this.go('fechas'), bg: 'var(--cE3F1F8)' },
+      { title: 'Universidades en Madrid', text: 'Las seis universidades públicas, dónde están y de cuáles ya hay datos.', go: this.go('unis'), bg: 'var(--cE3F3EA)' }
+    ].map((c) => Object.assign({}, c, { style: CARD + 'background:' + c.bg + ';' }));
+
+    return {
+      navItems,
+      goHome: this.go('home'),
+      goPau: this.go('pau'),
+      goGrados,
+      goCompare: this.go('compare'),
+      startQuiz,
+      homeCards,
+      rootStyle, toggleDark, darkPressed: s.dark ? 'true' : 'false', darkLabel: s.dark ? 'Modo claro' : 'Modo oscuro',
+      isHome: s.screen === 'home',
+      isQuiz: s.screen === 'quiz',
+      isResults: s.screen === 'results',
+      isGrados: s.screen === 'grados',
+      isFicha: s.screen === 'ficha',
+      isCompare: s.screen === 'compare',
+      isPau: s.screen === 'pau',
+      isFechas: s.screen === 'fechas',
+      isUnis: s.screen === 'unis',
+      showList,
+      quizNumber: qIndex + 1, quizTotal: questions.length, areaBars,
+      quizBarStyle: 'height:100%;border-radius:999px;background:var(--greenBg);width:' + (((qIndex + 1) / questions.length) * 100) + '%;',
+      quizQuestion: question.q,
+      quizOptions,
+      canBack: s.q > 0,
+      quizBack,
+      resultAreas,
+      resultsNoData: s.screen === 'results' && sorted.length === 0,
+      search: s.search,
+      onSearch: (e) => { this.setState({ search: e.target.value, limit: 20 }); },
+      order: s.order,
+      onOrder: (e) => { this.setState({ order: e.target.value, limit: 20 }); },
+      ramaChips,
+      uniChips,
+      uniNoData,
+      uniSelected: s.uni,
+      totalCount: sorted.length,
+      gradoItems,
+      canMore: sorted.length > shown.length,
+      remaining: sorted.length - shown.length,
+      showMore: () => { this.setState({ limit: this.getS().limit + 20 }); },
+      listEmpty: sorted.length === 0 && !uniNoData && s.screen === 'grados',
+      hasResult: showOk,
+      noResult: !showOk,
+      naText: this.f3(na),
+      pauFound, hasPauFound: pauFound.length > 0, onPauQ: setField('pauQ'), pauQ: s.pauQ,
+      pauSel: !!pm, pauNeedOk: !showOk, pauParts, pauNoParts: !!(pm && pm.parts && pm.parts.length === 0),
+      pauSelBase: pm ? 'Tu nota de acceso: ' + fm3(pm.na !== undefined ? pm.na : na) + (pm.parts && pm.parts.length ? ' más:' : '') : '', pauSelName: pg ? pg.nombre + ' · ' + pg.uni : '', pauSelText,
+      pauSelCut: pg ? 'Nota de corte 2025-26: ' + this.f3(pg.notas[3]) : '',
+      pauSelBadge: !!(pm && pm.st), pauSelBadgeLabel: (pm && pm.st) ? pm.st.label : '', pauSelBadgeStyle: (pm && pm.st) ? pm.st.style : '',
+      missingText, hasMissing: missing.length > 0 && missing.length < 5,
+      foText: this.f3(fo), warnItems, hasWarn: warnItems.length > 0,
+      hasCompare: cmpIds.length > 0,
+      cmpCount: cmpIds.length,
+      cmpHint,
+      cmpSearch: s.cmpSearch,
+      onCmpSearch: (e) => { this.setState({ cmpSearch: e.target.value }); },
+      cmpHasSearch,
+      cmpSearchItems,
+      cmpSearchEmpty: cmpHasSearch && cmpFound.length === 0,
+      cmpTooFew: nCmp < 2,
+      cmpReady: nCmp >= 2,
+      cmpHeads,
+      cmpRows,
+      cmpHeadStyle: cmpGrid + 'align-items:end;',
+      cmpRowStyle: cmpGrid + 'border-top:1px solid var(--cD3E5EE);',
+      cmpMinStyle: 'min-width:' + (170 + nCmp * 260) + 'px;',
+      fichaTitle: fg.nombre,
+      fichaUni: fg.uni,
+      fichaRama: fg.rama,
+      fichaCodigo: fg.codigo,
+      fichaCentro: fg.centro,
+      fichaPars: fg.nombre.indexOf('P.A.R.S.') >= 0 || fg.nombre.indexOf('(PARS)') >= 0,
+      fichaHasCodigo: !!fg.codigo,
+      fichaCodigoText: 'Código ' + fg.codigo,
+      fichaCredText: fg.cred + ' créditos · ' + fg.cursos + ' cursos',
+      fichaG2: 'Nota de corte del Grupo 2 (titulados) en 2025-26: ' + (fg.g2 === null ? 'sin dato' : fg.g2.toFixed(2).replace('.', ',')),
+      fichaHasHist: fg.notas[0] !== null || fg.notas[1] !== null || fg.notas[2] !== null,
+      fichaOnlyOne: !(fg.notas[0] !== null || fg.notas[1] !== null || fg.notas[2] !== null),
+      fichaCorte: this.f3(fg.notas[3]),
+      fichaBars,
+      fichaChartLabel,
+      fichaCambio: this.deltaText(fg),
+      fichaHasW: !!fg.w,
+      fichaNoW: !fg.w,
+      fichaW2: (w2 || []).map((t) => ({ t })),
+      fichaW1: (w1 || []).map((t) => ({ t })),
+      fichaMineShow: !!(fm && (fm.adm !== undefined || fm.na !== undefined)),
+      fichaMineNo: !(fm && (fm.adm !== undefined || fm.na !== undefined)),
+      fichaMineTitle: (fm && fm.noW) ? 'Tu nota de acceso, sobre 10 (este grado no tiene ponderaciones cargadas)' : 'Tu nota de admisión estimada (sobre 14)',
+      fichaMineText: (fm && fm.adm !== undefined) ? this.f3(fm.adm) : ((fm && fm.na !== undefined) ? this.f3(fm.na) : ''),
+      fichaBadgeShow: !!(fm && fm.st),
+      fichaBadgeLabel: (fm && fm.st) ? fm.st.label : '',
+      fichaBadgeStyle: (fm && fm.st) ? fm.st.style : '',
+      fichaToggle: toggleCompare(fg.id),
+      fichaCmpLabel: cmpBtnLabel(fg.id),
+      fichaCmpStyle: cmpBtnStyle(fg.id),
+      nmb: s.nmb,
+      onNmb: setField('nmb'),
+      examFields,
+      modm: s.modm,
+      onModm: setField('modm'),
+      modn: s.modn,
+      onModn: setField('modn'),
+      matOptions,
+      volFields,
+      fillExample,
+      clearPau,
+      showEmpty,
+      showFail,
+      showOk,
+      cntOk, cntNear, cntLow, cntMaybe, sumMaybeStyle: B_NEAR,
+      sumOkStyle: B_OK, sumNearStyle: B_NEAR, sumLowStyle: B_LOW,
+      topRows,
+      topEmpty: showOk && topRows.length === 0,
+      fechaSteps,
+      uniCards, mapDots, madridStyle, madridLabel, mapLegend
+    };
+  }
+}
+</script>
+</body>
+</html>
